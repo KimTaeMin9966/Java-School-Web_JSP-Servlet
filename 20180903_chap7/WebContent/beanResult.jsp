@@ -27,8 +27,11 @@
 		m.setAddr("평양");
 		m.setEmail("abc@nate.com");
 	%>
-	이름 : <%= m.getName()%>
+	<%-- 이름 : <%= m.getName()%>
 	주소 : <%= m.getAddr()%>
-	이메일 : <%= m.getEmail()%>
+	이메일 : <%= m.getEmail()%> --%>
+	이름 : <jsp:getProperty property="name" name="m"/>
+	주소 : <jsp:getProperty property="addr" name="m"/>
+	이메일 : <jsp:getProperty property="email" name="m"/>
 </body>
 </html>
