@@ -20,7 +20,7 @@
 	<% date.setTime(session.getCreationTime()); %>
 	세션 생성시간 : <%= sdf.format(date) %>
 	<% date.setTime(session.getLastAccessedTime()); %>
-	최근 접속 시간 : <%= sdf.format(date) %>
+	최근 접근시간 : <%= sdf.format(date) %>
 	
 </body>
 </html>
