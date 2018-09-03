@@ -17,6 +17,8 @@
 	쿠키 이름 : <%= cookie.getName()%> 쿠키의 값 : <%= cookie.getValue() %>
 	
 	<br/>
-	<a href="viewCookie.jsp"> 쿠키 확인</a> 
+	<a href="viewCookie.jsp"> 쿠키 확인</a>
+	<a href="modifyCookie.jsp"> 쿠키 수정</a>
+	<a href="deleteCookie.jsp"> 쿠키 삭제</a>  
 </body>
 </html>
