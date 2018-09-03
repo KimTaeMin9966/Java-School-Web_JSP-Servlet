@@ -15,6 +15,8 @@
 </head>
 <body>
 	로그인에 성공하였습니다.
+	<a href="sessionLogOut.jsp">로그 아웃</a>
+	<a href="sessionLoginCheck.jsp">로그인 체크</a>	
 	<%}else{ %>
 <script>
 	alert("로그인 실패");

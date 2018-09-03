@@ -7,10 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="<%= request.getContextPath() %>/member/sessionCheck.jsp" method="post">
+	<form action="<%= request.getContextPath()%>/member/sessionCheck.jsp" method="post">
 		아이디 : <input type="text" name="id"/><br/>
 		비밀번호 : <input type="text" name="pass"/><br/>
-		<input type="submit" value="확인" />
+		<input type="submit" value="확인">
 	</form>
 </body>
 </html>
