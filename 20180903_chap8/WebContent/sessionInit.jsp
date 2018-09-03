@@ -11,5 +11,9 @@
 	session.invalidate();
 %>
 
+<script>
+	window.location.href="sessionTest.jsp";
+</script>
+
 </body>
 </html>

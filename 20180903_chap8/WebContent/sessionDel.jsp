@@ -8,6 +8,11 @@
 </head>
 <body>
 <h1>DEL</h1>
-
+<%
+	session.removeAttribute("id");
+%>
+<script>
+	window.location.href="sessionTest.jsp";
+</script>
 </body>
 </html>

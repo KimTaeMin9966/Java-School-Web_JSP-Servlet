@@ -8,6 +8,11 @@
 </head>
 <body>
 <h1>SET</h1>
-
+<%
+	session.setAttribute("id", "abcdef");
+%>
+<script>
+	window.location.href="sessionTest.jsp";
+</script>
 </body>
 </html>
