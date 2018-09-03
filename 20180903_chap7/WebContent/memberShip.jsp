@@ -11,9 +11,9 @@
 	<jsp:useBean id="member" class="member.MemberInfo">
 		<jsp:setProperty property="*" name="member" />
 	</jsp:useBean>
-	아이디 : <jsp:getProperty property="id" name="member"/>
-	비밀번호 : <jsp:getProperty property="pass" name="member"/>
-	이름 : <jsp:getProperty property="name" name="member"/>
-	이메일 : <jsp:getProperty property="email" name="member"/>
+	아이디 : <jsp:getProperty property="id" name="member"/><br/>
+	비밀번호 : <jsp:getProperty property="pass" name="member"/><br/>
+	이름 : <jsp:getProperty property="name" name="member"/><br/>
+	이메일 : <jsp:getProperty property="email" name="member"/><br/>
 </body>
 </html>
