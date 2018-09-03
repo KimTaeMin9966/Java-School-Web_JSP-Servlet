@@ -1,0 +1,54 @@
+@charset "UTF-8";
+#loginPage_M {
+	position: relative;
+	width: 400px;
+	line-height: 25px;
+	text-align: center;
+	border: 1px solid #CCC;
+	font-weight: bold;
+	cursor: default;
+	margin: 100px 0 200px 250px;
+}
+#loginPage_M tbody tr:first-child td:nth-child(1) {
+	width: 50px;
+}
+#loginPage_M tbody tr td:nth-child(1) {
+	text-align: left;
+}
+#loginPage_M tbody tr:first-child td:nth-child(2) {
+	width: 100px;
+}
+#loginPage_M tbody tr:first-child td:nth-child(2) img {
+	float: left;
+	width: 50px;
+	margin-left: 80px;
+}
+#loginPage_M tbody tr:first-child td:nth-child(2) h3 {
+	float: right;
+	margin-right: 50px;
+}
+#loginPage_M tbody tr:nth-child(2) td:nth-child(3) {
+	width: 44px;
+}
+#loginPage_M tbody tr:nth-child(1) td:nth-child(1) {
+	width: 30px;
+}
+input[type='text'] {
+	margin-bottom: 3px;
+}
+input[type='text'], input[type='password'] {
+	height: 25px;
+	background: #CCC;
+}
+
+
+
+
+
+
+
+
+
+
+
+

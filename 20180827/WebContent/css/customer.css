@@ -1,0 +1,190 @@
+@charset "UTF-8";
+h1 {
+	height: 143px;
+	background: url("../imgs/h1back4.jpg") no-repeat;
+}
+h1 div {
+	font-size: 65px;
+	color: #FFF;
+	font-weight: normal;
+	float: right;
+	position: relative;
+	top: 110px;
+	right: 10px;
+}
+aside {
+	float: left;
+	width: 175px;
+	margin: 30px 0 0 0;
+	background: url("../imgs/aside_vline.png") no-repeat right 48px;
+}
+aside h3 {
+	height: 52px;
+	position: relative;
+	left: 5px;
+	width: 180px;
+	background: url("../imgs/aside_h3_back.png") no-repeat left bottom;
+}
+aside h3 div {
+	background: #000;
+	color: #FFF;
+	font-size: 22px;
+	text-align: center;
+	padding: 17px 0;
+}
+aside ul {
+	list-style: none;
+	margin: 20px 30px 0 0;
+	float: right;
+}
+aside ul li a {
+	display: block;
+	padding: 20px 0;
+	text-align: right;
+	color: #252525;
+	font-size: 14px;
+	taransition: all 0.1s ease-in-out;
+}
+aside:hover ul li a {
+	color: rgba(0, 0, 0, 0.2);
+	text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+aside ul li a:hover {
+	text-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+	color: #252525;
+	font-size: 1.4em;
+}
+article {
+	float: left;
+	width: 700px;
+	padding: 20px;
+}
+article h2 {
+	font-size: 30px;
+	margin: 10px 0 30px 0;
+}
+#page {
+	width: 700px;
+	text-align: center;
+}
+#page ul.paging {
+	list-style: none;
+}
+#page ul.paging li {
+	display: inline-block;
+}
+#page ul.paging li a {
+	display: block;
+	padding: 2px 5px;
+	margin: 0 5px;
+	border: 1px solid #CCC;
+}
+#page ul.paging li a:hover {
+	background: skyblue;
+	color: #FFF;
+}
+.btn #IS, #S { /* 인풋(text), 검색 */
+	float: left;
+}
+.btn #M { /* 문의하기 */
+	float: right;
+}
+.btn #IS { /* 인풋(text) */
+	height: 30px;
+	margin: 0 2px 0 0;
+}
+.btn #S { /* 검색 */
+	display: block;
+	font-size: 1.2em;
+	color: #FFF;
+	background: #8BB7E9;
+	width: 50px;
+	padding: 10px;
+	text-align: center;
+}
+.btn #M { /* 문의 하기 */
+	display: block;
+	font-size: 1.2em;
+	color: #FFF;
+	width: 80px;
+	padding: 10px;
+	text-align: center;
+	border-radius: 5px;
+	background: linear-gradient(to bottom, #8BB7E9, #8BD1E9, #8BB7E9, white);
+	box-shadow: 0 5px 10px #8BD1E9;
+}
+.btn #S:hover, #M:hover { /* 검색과 문의하기에 마우스를 올렸을때 */
+	color: white;	
+	background: linear-gradient(to bottom, #8BD1E9, #8BB7E9, #8BD1E9, white);
+	border: 1px solid linear-gradient(to bottom, #8BD1E9, #8BB7E9, #8BD1E9, white);
+}
+#ALL { /* 게시판(table) */
+	width: 700px;
+	line-height: 25px;
+	border: 2px solid #CCC;
+	border-left: none;
+	border-right: none;
+	text-align: center;
+	border-collapse: collapse;
+	font-weight: bold;
+	cursor: default;
+}
+#title { /* 게시판(table) > 제목(id = title) */
+	border: 2px solid #CCC;
+	border-left: none;
+	border-right: none;
+	border-top: none;/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#959595+0,0d0d0d+46,010101+50,0a0a0a+53,4e4e4e+76,383838+87,1b1b1b+100;Black+Gloss+Pipe */
+	background: #959595; /* Old browsers */
+	background: -moz-linear-gradient(top, #959595 0%, #0d0d0d 46%, #010101 50%, #0a0a0a 53%, #4e4e4e 76%, #383838 87%, #1b1b1b 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #959595 0%,#0d0d0d 46%,#010101 50%,#0a0a0a 53%,#4e4e4e 76%,#383838 87%,#1b1b1b 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #959595 0%,#0d0d0d 46%,#010101 50%,#0a0a0a 53%,#4e4e4e 76%,#383838 87%,#1b1b1b 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#959595', endColorstr='#1b1b1b',GradientType=0 ); /* IE6-9 */
+	color: white;
+}
+#title td:nth-child(2) { /* 게시판(table)의 2번째 녀석인 제목 */
+	letter-spacing: 60px;
+	text-align: center;
+}
+#pa td:nth-child(2) { /* 게시판(table) > 제목(id = title)의 2번째 녀석인 제목 */
+	float: left;
+	padding: 0 150px 0 10px;
+}
+#pa { /* 게시판(table) > 개시글 */
+	border: 2px dotted #CCC;
+	border-left: none;
+	border-right: none;
+	border-top: none;
+}
+#pa:last-child {
+	border-bottom: none;
+}
+#pa:nth-child(2n+1) {
+	background: #8BB7E9;
+}
+#pa:hover {
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#d2dfed+0,c8d7eb+26,bed0ea+51,a6c0e3+51,afc7e8+62,bad0ef+75,99b5db+88,799bc8+100;Grey+Blue+Gloss+%231 */
+	background: #d2dfed; /* Old browsers */
+	background: -moz-linear-gradient(top, #d2dfed 0%, #c8d7eb 26%, #bed0ea 51%, #a6c0e3 51%, #afc7e8 62%, #bad0ef 75%, #99b5db 88%, #799bc8 100%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #d2dfed 0%,#c8d7eb 26%,#bed0ea 51%,#a6c0e3 51%,#afc7e8 62%,#bad0ef 75%,#99b5db 88%,#799bc8 100%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #d2dfed 0%,#c8d7eb 26%,#bed0ea 51%,#a6c0e3 51%,#afc7e8 62%,#bad0ef 75%,#99b5db 88%,#799bc8 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d2dfed', endColorstr='#799bc8',GradientType=0 ); /* IE6-9 */
+	color: white;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

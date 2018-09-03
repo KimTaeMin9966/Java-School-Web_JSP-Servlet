@@ -1,0 +1,37 @@
+@charset "UTF-8";
+table {
+	border-collapse: collapse;
+	margin-left: 50px;
+	margin-top: 50px;
+}
+table tr th {
+	font-size: 50px;
+	height: 100px;
+}
+table tr {
+	margin: 30px 0;
+}
+#pa {
+	text-align: right;
+}
+#pa td:first-child {
+	padding-bottom: 10px;
+	padding-right: 50px;
+}
+table tr td:last-child {
+	text-align: center;
+}
+/* 
+table tr th, table tr td {
+	padding: 5px;
+}
+table tr:nth-child(2) td:nth-child(3) {
+	width: 50px;
+}
+table tr:nth-child(2) td,
+table tr:nth-child(3) td {
+	padding-left: 5px;
+}
+table tr:nth-child(4) td:nth-child(2) {
+	text-align: center;
+} */
