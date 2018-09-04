@@ -14,12 +14,12 @@
 			cookie.setMaxAge(60*60*24*30);
 			response.addCookie(cookie);
 			session.setAttribute("id", loginMember.getId());
-			out.print("<script>alert('로그인 성공'); location.href='index.jsp';</script>");
+			out.print("<script>alert('로그인 성공'); location.href='index.jsp?page=default';</script>");
 		} else {
 			session.setAttribute("id", loginMember.getId());
-			out.print("<script>alert('로그인 성공'); location.href='index.jsp';</script>");
+			out.print("<script>alert('로그인 성공'); location.href='index.jsp?page=default';</script>");
 		}
 	} else {
-		out.print("<script>alert('로그인 실패'); location.href='index.jsp';</script>");
+		out.print("<script>alert('로그인 실패'); location.href='index.jsp?page=login';</script>");
 	}
 %>

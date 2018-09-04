@@ -11,7 +11,7 @@
 		<%if(isLogin) {
 		%>
 			<a href="index.jsp?page=info"><%=id %></a>님 반갑습니당. &nbsp;&nbsp;|&nbsp;&nbsp;
-			<a href="index.jsp?page=logOut">로그아웃</a>
+			<a href="logOut.jsp">로그아웃</a>
 		<%	
 		} else {
 		%>

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%
 	Cookie[] cookies = request.getCookies();
 	if (cookies != null && cookies.length > 0) {
@@ -15,5 +15,5 @@
 %>
 <script>
 	alert('로그아웃 성공');
-	location.href='index.jsp?page=default';
+	location.href = 'index.jsp?page=default';
 </script>
