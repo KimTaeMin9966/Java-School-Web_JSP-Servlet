@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<jsp:useBean id="member" class="VO.VOmember" />
-<jsp:setProperty property="*" name="member" />
 <%
 	String id = (String) session.getAttribute("id");
 	boolean isLogin = false;
