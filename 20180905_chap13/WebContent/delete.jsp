@@ -3,9 +3,11 @@
     pageEncoding="UTF-8"%>
 <%
 	request.setCharacterEncoding("UTF-8");
-	String name= request.getParameter("name");
-	String addr= request.getParameter("addr");
-	
+	String num = request.getParameter("num");
+	int number = 0;
+	if(num != null) {
+		number = Integer.parseInt(num);
+	}
 	Connection conn = null;
 	
 	String driver = "oracle.jdbc.driver.OracleDriver";
@@ -14,27 +16,26 @@
 	Boolean connect = false;
 	
 	Statement stmt = null; //스테이트먼트
-	
+	ResultSet rs = null;
 	try {
 		Class.forName(driver);
 		conn = DriverManager.getConnection(url, "java", "java");
 		connect = true;
 		
 		stmt = conn.createStatement();
-		String sql = "INSERT INTO member VALUES(m_num.nextval,'" + name + "','" + addr + "')";
+		String sql = "DELETE FROM member WHERE num=" + number;
 		
-		int result = stmt.executeUpdate(sql);
-		if(result != 0) {
-			out.print("<h3>등록 완료</h3>");
-		}
+		stmt.executeUpdate(sql);
+		out.print("<h3>삭제 완료</h3>");
 	} catch(Exception e) {
 		connect = false;
-		out.print("<h3>등록 실패</h3>");
+		out.print("<h3>삭제 실패</h3>");
 		e.printStackTrace();
 	} finally {
 		try {
 			stmt.close();
 			conn.close();
+			out.print("<script>location.href = 'memberList.jsp';</script>");
 		} catch(Exception e) {
 			e.printStackTrace();
 		}

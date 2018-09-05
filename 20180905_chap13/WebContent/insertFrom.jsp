@@ -10,10 +10,6 @@
 	<form action="insert.jsp" method="post">
 		<table>
 			<tr>
-				<td>번호</td>
-				<td><input type="number" name="num" /></td>
-			</tr>
-			<tr>
 				<td>이름</td>
 				<td><input type="text" name="name" /></td>
 			</tr>

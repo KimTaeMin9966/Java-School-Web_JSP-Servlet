@@ -50,7 +50,7 @@
 			String addr = rs.getString(3);
 		%>
 			<tr>
-				<td><%=num %></td>
+				<td><a href="delete.jsp?num=<%=num%>"><%=num %></a></td>
 				<td><%=name %></td>
 				<td><%=addr %></td>
 			</tr>
