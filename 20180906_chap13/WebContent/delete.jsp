@@ -12,6 +12,9 @@
 		out.print("<script>alert('올바른 접근이 아닙니다.'); location.href = 'index.jsp';</script");
 	}
 
+	String num = request.getParameter("u_num");
+	int u_num = Integer.parseInt(num);
+	
 	Connection conn = null;
 	Statement stmt = null; // 스테이트먼트
 	PreparedStatement pstmt = null; // 프리페어드 스테이트먼트
@@ -19,9 +22,6 @@
 	ResultSet rs = null;
 	
 	ResultSetMetaData rsmd = null;
-
-	String num = request.getParameter("u_num");
-	int u_num = Integer.parseInt(num);
 	
 	try {
 		Context init = new InitialContext();
@@ -34,7 +34,7 @@
 		pstmt.setInt(1, u_num);
 		pstmt.executeUpdate();
 		
-		out.print("<script>alert('쿼리 성공\r\n회원정보가 삭제되었습니다.'); location.href='memberList.jsp';</script>");
+		out.print("<script>alert('회원정보가 삭제되었습니다.'); location.href='memberList.jsp';</script>");
 	} catch (Exception e) {
 		e.printStackTrace();
 		out.print("<script>alert('쿼리 실패'); location.href = 'index.jsp';</script>");

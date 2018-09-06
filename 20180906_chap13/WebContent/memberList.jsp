@@ -26,7 +26,7 @@
 		conn = ds.getConnection();
 		out.println("<h3>연결되었습니다.</h3>");
 
-		String sql = "SELECT * FROM pin_member ORDER BY u_num DESC";
+		String sql = "SELECT ROWNUM AS r, pin.* FROM (SELECT * FROM pin_member ORDER BY u_num) pin ORDER BY r DESC";
 		pstmt = conn.prepareStatement(sql);
 		rs = pstmt.executeQuery();
 	} catch (Exception e) {
@@ -52,7 +52,7 @@
 		</tr>
 		<% while(rs.next()) { %>
 			<tr>
-				<td><%=rs.getInt("u_num") %></td>
+				<td><%=rs.getInt("r") %></td>
 				<td><%=rs.getString("u_id") %></td>
 				<td><%=rs.getInt("u_age") %></td>
 				<td><%=rs.getString("u_gender") %></td>
