@@ -41,8 +41,5 @@
 	<c:forEach var="temp_text" items="${temp}">
 		<c:out value="${temp_text}" />&nbsp;
 	</c:forEach><br/>
-	
-	
-	
 </body>
 </html>
