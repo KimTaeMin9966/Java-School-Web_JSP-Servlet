@@ -14,7 +14,7 @@
 	url="jdbc:oracle:thin:@localhost:1521:ORCL" user="java" password="java" />
 	
 	<%-- <sql:update dataSource="${con}">
-		INSERT INTO test_member VALUES('id007','pass7','최기근','부산','010444444')
+		INSERT INTO test_member VALUES('id007', 'pass7', '김태민', '부산', '010444444')
 	</sql:update> --%>
 	
 	<sql:update dataSource="${con}">
