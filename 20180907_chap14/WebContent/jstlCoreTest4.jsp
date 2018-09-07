@@ -21,12 +21,12 @@
 		${result} &nbsp;
 	</c:forEach><br/>
 	
-	<c:set var="data" value="고민성,김태민,김태오,박준현" />
+	
 	<c:forTokens var="varData" items="${data}" delims=",">
 		${varData} &nbsp;
 	</c:forTokens><br/>
 	
-	<c:set var="data" value="이은영|조정민|전해성|팽찬우" />
+	
 	<c:forTokens var="varData" items="${data}" delims="|">
 		${varData} &nbsp;
 	</c:forTokens><br/>
