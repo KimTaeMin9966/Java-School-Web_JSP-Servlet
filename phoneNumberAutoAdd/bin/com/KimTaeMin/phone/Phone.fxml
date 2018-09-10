@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane fx:controller="com.KimTaeMin.phone.PhoneController" prefHeight="127.0" prefWidth="218.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+   <children>
+      <Button fx:id="In" layoutX="14.0" layoutY="92.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="55.0" text="입력" />
+      <Label layoutX="14.0" layoutY="18.0" text="이름입력" />
+      <TextField fx:id="name" layoutX="70.0" layoutY="14.0" />
+      <TextField fx:id="pn" layoutX="70.0" layoutY="44.0" />
+      <Label layoutX="14.0" layoutY="48.0" text="번호입력" />
+      <Button fx:id="Edit" layoutX="84.0" layoutY="92.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="55.0" text="수정" />
+      <Button fx:id="Commit" layoutX="153.0" layoutY="92.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="55.0" text="목록" />
+   </children>
+</AnchorPane>
