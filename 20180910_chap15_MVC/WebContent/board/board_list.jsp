@@ -20,7 +20,13 @@
 		<c:forEach var="board" items="${boardList}">
 			<tr>
 				<td>${board.board_num}</td>
-				<td>${board.board_title}</td>
+				<td>
+					<c:if test="${board.board_re_lev != 0}">
+						<c:forEach var="i" begin="1" end="${board.board_re_lev}">&nbsp;&nbsp;&nbsp;</c:forEach>
+						▶
+					</c:if>
+					<a href="boardDetail.bo?board_num=${board.board_num}">${board.board_title}</a>
+				</td>
 				<td>${board.board_name}</td>
 				<td>${board.board_date}</td>
 				<td>${board.board_readcount}</td>
