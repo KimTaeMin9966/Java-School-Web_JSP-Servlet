@@ -1,6 +1,7 @@
 package service;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -35,11 +36,15 @@ public class BoardService {
 		
 		BoardDao bd = BoardDao.getInstance();
 		bd.insertBoard(boardVo);
-		
-		
+	}
+	
+	// 게시물 목록
+	public void boardList(HttpServletRequest request) {
+		BoardDao bd = BoardDao.getInstance();
+		ArrayList<BoardVo> boardList = bd.getBoardList();
+		request.setAttribute("boardList", boardList);
 		
 		
 		
 	}
-	
 }

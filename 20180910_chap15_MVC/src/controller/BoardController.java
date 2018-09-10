@@ -26,17 +26,21 @@ public class BoardController extends HttpServlet {
 		String contextPath = request.getContextPath();
 		System.out.println(contextPath);
 		
-		String commnad = requestUri.substring(contextPath.length());
-		System.out.println(commnad);
+		String command = requestUri.substring(contextPath.length());
+		System.out.println(command);
 		
-		if(commnad.equals("/boardList.bo")) {
+
+		if(command.equals("/boardList.bo")) {
 			System.out.println("게시물 목록 요청");
-			response.sendRedirect(contextPath + "/board/board_list.jsp");
-		} else if(commnad.equals("/boardWrite.bo")) {
+			bs.boardList(request);
+			//response.sendRedirect(request.getContextPath()+"/board/board_list.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("/board/board_list.jsp");
+			rd.forward(request, response);
+		} else if(command.equals("/boardWrite.bo")) {
 			System.out.println("게시물 작성 요청");
 			RequestDispatcher rd = request.getRequestDispatcher("/board/board_write.jsp");
 			rd.forward(request, response);
-		} else if(commnad.equals("/boradWriteSubmit.bo")) {
+		} else if(command.equals("/boardWriteSubmit.bo")) {
 			System.out.println("게시글 입력 요청");
 			bs.regArticle(request);
 		}
