@@ -1,5 +1,6 @@
 package vo;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class BoardVo {
@@ -101,5 +102,17 @@ public class BoardVo {
 
 	public void setBoard_date(Date board_date) {
 		this.board_date = board_date;
+	}
+	
+	public String getBoard_day_date() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String date = sdf.format(this.board_date);
+		return date;
+	}
+	
+	public String getBoard_time_date() {
+		SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss");
+		String date = sdf.format(this.board_date);
+		return date;
 	}
 }

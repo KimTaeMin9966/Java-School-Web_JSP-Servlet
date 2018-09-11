@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<jsp:include page="../common/header.jsp" />
 	<h1>글 내용 상세보기</h1>
 	<table>
 		<tr>
@@ -23,7 +25,11 @@
 		</tr>
 		<tr>
 			<td>첨부파일</td>
-			<td>${boardVo.board_file}</td>
+			<td>
+				<c:if test="${!empty boardVo.board_file}">
+					<a href="file_down.bo?board_file=${boardVo.board_file}">${boardVo.board_file}</a>
+				</c:if>
+			</td>
 		</tr>
 		<tr>
 			<td colspan=2>

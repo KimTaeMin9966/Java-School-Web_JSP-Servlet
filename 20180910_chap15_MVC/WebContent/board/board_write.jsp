@@ -7,8 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<jsp:include page="../common/header.jsp" />
 	<h1>게시물 작성</h1>
-	<form action="boradWriteSubmit.bo" method="post" enctype="multipart/form-data">
+	<form action="boardWriteSubmit.bo" method="post" enctype="multipart/form-data">
 		<table>
 			<tr>
 				<td>작성자</td>

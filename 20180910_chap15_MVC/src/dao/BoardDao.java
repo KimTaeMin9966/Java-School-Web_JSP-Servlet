@@ -3,6 +3,7 @@ package dao;
 import java.sql.*;
 import java.util.ArrayList;
 
+import util.JdbcUtil;
 import vo.BoardVo;
 
 public class BoardDao {
@@ -16,6 +17,27 @@ public class BoardDao {
 	public static BoardDao getInstance() {
 		if(boardDao == null) { boardDao = new BoardDao(); }
 		return boardDao;
+	}
+	
+	public int getListCount() {
+		int listCount = 0;
+		
+		try {
+			conn = JdbcUtil.getConnection();
+			String sql = "SELECT COUNT(*) FROM test_board";
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				listCount = rs.getInt(1);
+			}
+		} catch (SQLException e) { e.printStackTrace(); }
+		finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(conn);
+		}
+		return listCount;
 	}
 	
 	// 글 입력
@@ -45,20 +67,27 @@ public class BoardDao {
 			pstmt.executeUpdate();
 		} catch (SQLException e) { e.printStackTrace(); }
 		finally {
-			close(rs);
-			close(pstmt);
-			close(conn);
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(conn);
 		}
 	}
 	
-	public ArrayList<BoardVo> getBoardList() {
+	public ArrayList<BoardVo> getBoardList(int page, int count) {
 		ArrayList<BoardVo> boardList = new ArrayList<>();
 		
 		try {
-			conn = JdbcUtil.getConnection();
+			int startRow = ((page - 1) * 10) + 1;
+			int endRow = startRow + count;
 			
-			String sql = "SELECT * FROM test_board ORDER BY board_re_ref DESC, board_re_seq ASC";
+			conn = JdbcUtil.getConnection();
+			//String sql = "SELECT * FROM test_board ORDER BY board_re_ref DESC, board_re_seq ASC";
+			String sql = "SELECT * FROM (SELECT ROWNUM AS rnum, temp.* FROM "
+					+ "(SELECT * FROM test_board ORDER BY board_re_ref DESC, board_re_seq ASC) temp)"
+					+ " WHERE rnum BETWEEN ? and ?";
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, startRow);
+			pstmt.setInt(2, endRow);
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
@@ -78,43 +107,13 @@ public class BoardDao {
 			}
 		} catch (SQLException e) { e.printStackTrace(); }
 		finally {
-			close(rs);
-			close(pstmt);
-			close(conn);
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(conn);
 		}
 		return boardList;
 	}
 	
-	public void close(Connection conn) {
-		try {
-			if(conn != null) { conn.close(); }
-		} catch (SQLException e) { e.printStackTrace(); }
-	}
-
-	public void commit(Connection conn) {
-		try {
-			conn.commit();
-		} catch (SQLException e) { e.printStackTrace(); }
-	}
-	
-	public void rollback(Connection conn) {
-		try {
-			conn.rollback();
-		} catch (SQLException e) { e.printStackTrace(); }
-	}
-	
-	public void close(PreparedStatement pstmt) {
-		try {
-			if(pstmt != null) { pstmt.close(); }
-		} catch (SQLException e) { e.printStackTrace(); }
-	}
-	
-	public void close(ResultSet rs) {
-		try {
-			if(rs != null) { rs.close(); }
-		} catch (SQLException e) { e.printStackTrace(); }
-	}
-
 	public BoardVo getBoardVo(int board_num) {
 		conn = JdbcUtil.getConnection();
 		BoardVo boardVo = new BoardVo();
@@ -140,9 +139,9 @@ public class BoardDao {
 			}
 		} catch (SQLException e) { e.printStackTrace(); }
 		finally {
-			close(rs);
-			close(pstmt);
-			close(conn);
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(conn);
 		}
 		return boardVo;
 	}
@@ -158,8 +157,8 @@ public class BoardDao {
 			pstmt.executeUpdate();
 		} catch (SQLException e) { e.printStackTrace(); }
 		finally {
-			close(pstmt);
-			close(conn);
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(conn);
 		}
 	}
 
@@ -193,11 +192,11 @@ public class BoardDao {
 			pstmt.setInt(8, seq);
 			pstmt.setInt(9, 0);
 			pstmt.executeUpdate();
-			commit(conn);
-		} catch (SQLException e) { e.printStackTrace(); rollback(conn); }
+			JdbcUtil.commit(conn);
+		} catch (SQLException e) { e.printStackTrace(); JdbcUtil.rollback(conn); }
 		finally {
-			close(pstmt);
-			close(conn);
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(conn);
 		}
 	}
 
@@ -218,9 +217,40 @@ public class BoardDao {
 			System.out.println("수정 완료");
 		} catch (SQLException e) { e.printStackTrace(); }
 		finally {
-			close(pstmt);
-			close(conn);
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(conn);
 		}
+	}
+
+	public boolean boardDeleteSubmit(BoardVo boardVo) {
+		boolean success = false;
+		try {
+			conn = JdbcUtil.getConnection();
+			String sql = "";
+			sql = "SELECT board_pass FROM test_board WHERE board_num = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, boardVo.getBoard_num());
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				String board_pass = rs.getString("board_pass");
+				if(boardVo.getBoard_pass().equals(board_pass)) {
+					sql = "DELETE FROM test_board WHERE board_num = ?";
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setInt(1, boardVo.getBoard_num());
+					pstmt.executeUpdate();
+					success = true;
+				}
+			} else {
+				success = false;
+			}
+		} catch (SQLException e) { e.printStackTrace(); success = false; }
+		finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(conn);
+		}
+		return success;
 	}
 	
 }

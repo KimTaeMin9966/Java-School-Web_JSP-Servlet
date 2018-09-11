@@ -7,10 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-게시물 번호 : ${boardVo.board_num}
-답변 참조 번호 : ${boardVo.board_re_ref}
-답변 레벨 : ${boardVo.board_re_lev}
-답변 순서 : ${boardVo.board_re_seq}
+	<jsp:include page="../common/header.jsp" />
+	게시물 번호 : ${boardVo.board_num}
+	답변 참조 번호 : ${boardVo.board_re_ref}
+	답변 레벨 : ${boardVo.board_re_lev}
+	답변 순서 : ${boardVo.board_re_seq}
 	<h1>게시판 답변 글 작성</h1>
 	<form action="boardReplySubmit.bo" method="post">
 		<input type="hidden" name="board_num" value="${boardVo.board_num}" />

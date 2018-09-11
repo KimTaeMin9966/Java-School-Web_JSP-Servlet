@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+	<jsp:include page="../common/header.jsp" />
 	<form action="boardUpdateSubmit.bo" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="board_num" value="${boardVo.board_num}" />
 		<table>

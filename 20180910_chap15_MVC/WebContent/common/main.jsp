@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<jsp:forward page="main.bo"/>
+	<jsp:include page="header.jsp" />
+	<h1>메인 페이지</h1>
 </body>
 </html>

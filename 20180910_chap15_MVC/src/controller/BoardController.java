@@ -3,6 +3,7 @@ package controller;
 import java.io.IOException;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -43,6 +44,8 @@ public class BoardController extends HttpServlet {
 		} else if(command.equals("/boardWriteSubmit.bo")) {
 			System.out.println("게시글 입력 요청");
 			bs.regArticle(request);
+			RequestDispatcher rd = request.getRequestDispatcher("/boardList.bo");
+			rd.forward(request, response);
 		} else if(command.equals("/boardDetail.bo")) {
 			System.out.println("상세보기 요청");
 			System.out.println("board_num : " + request.getParameter("board_num"));
@@ -67,7 +70,22 @@ public class BoardController extends HttpServlet {
 			bs.boardUpdateSubmit(request, response);
 		} else if(command.equals("/boardDeleteForm.bo")) {
 			System.out.println("삭제창 요청");
-			RequestDispatcher rd = request.getRequestDispatcher("/board/board_reply.jsp");
+			String board_num = request.getParameter("board_num");
+			request.setAttribute("board_num", board_num);
+			RequestDispatcher rd = request.getRequestDispatcher("/board/board_delete.jsp");
+			rd.forward(request, response);
+		} else if(command.equals("/boardDeleteSubmit.bo")) {
+			System.out.println("삭제 요청");
+			bs.boardDeleteSubmit(request, response);
+		} else if(command.equals("/boardSample.bo")) {
+			bs.boardSample();
+		} else if(command.equals("/file_down.bo")) {
+			System.out.println("파일 다운 요청");
+			ServletContext context = request.getServletContext();
+			bs.fileDown(request, response, context);
+		} else if(command.equals("/main.bo")) {
+			System.out.println("main 호출");
+			RequestDispatcher rd = request.getRequestDispatcher("/common/main.jsp");
 			rd.forward(request, response);
 		}
 	}
