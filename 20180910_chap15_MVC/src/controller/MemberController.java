@@ -47,24 +47,24 @@ public class MemberController extends HttpServlet {
 			RequestDispatcher rd = request.getRequestDispatcher("/member/management.jsp");
 			rd.forward(request, response);
 		} else if(command.equals("/logOut.mb")) {
-			System.out.println("로그아웃 요청");
+			System.out.println("로그아웃 요청"); // OK
 			ms.logOut(request, response);
 		} else if(command.equals("/login.mb")) {
-			System.out.println("로그인 요청");
+			System.out.println("로그인 요청"); // OK
 			RequestDispatcher rd = request.getRequestDispatcher("/member/login.jsp");
 			rd.forward(request, response);
 		} else if(command.equals("/join.mb")) {
-			System.out.println("회원가입 요청");
+			System.out.println("회원가입 요청"); // OK
 			RequestDispatcher rd = request.getRequestDispatcher("/member/join.jsp");
 			rd.forward(request, response);
 		} else if(command.equals("/memberLogin.mb")) {
-			System.out.println("로그인 프로세스 요청");
+			System.out.println("로그인 프로세스 요청"); // OK
 			ms.loginCheck(request, response);
 		} else if(command.equals("/memberJoin.mb")) {
-			System.out.println("회원가입 프로세스 요청");
+			System.out.println("회원가입 프로세스 요청"); // OK
 			ms.joinCheck(request, response);
 		} else if(command.equals("/main.mb")) {
-			System.out.println("메인페이지 요청");
+			System.out.println("메인페이지 요청"); // OK
 			RequestDispatcher rd = request.getRequestDispatcher("/common/main.jsp");
 			rd.forward(request, response);
 		}
