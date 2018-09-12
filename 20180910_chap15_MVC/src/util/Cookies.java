@@ -25,7 +25,7 @@ public class Cookies {
 		return cookieMap.get(id);
 	}
 	
-	public String getvalue(String id) throws UnsupportedEncodingException {
+	public String getValue(String id) throws UnsupportedEncodingException {
 		Cookie cookie = cookieMap.get(id);
 		if (cookie != null) {
 			return URLDecoder.decode(cookie.getValue(), "UTF-8");
@@ -51,20 +51,9 @@ public class Cookies {
 			}
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+	public boolean exists(String id) {
+		return cookieMap.get(id) != null;
+	}
 	
 }
