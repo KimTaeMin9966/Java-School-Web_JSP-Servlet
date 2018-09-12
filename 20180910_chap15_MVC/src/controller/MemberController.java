@@ -42,7 +42,7 @@ public class MemberController extends HttpServlet {
 			System.out.println("나의 정보 요청");
 			RequestDispatcher rd = request.getRequestDispatcher("/member/info.jsp");
 			rd.forward(request, response);
-		} else if(command.equals("/management.mb")) {
+		} else if(command.equals("/management.mb")) { // OK
 			System.out.println("회원관리 요청");
 			ms.memberList(request);
 			RequestDispatcher rd = request.getRequestDispatcher("/member/management.jsp");

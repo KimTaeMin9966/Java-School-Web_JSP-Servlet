@@ -141,7 +141,7 @@ public class MemberDao {
 			
 			conn = JdbcUtil.getConnection();
 			String sql = "SELECT * FROM (SELECT ROWNUM AS rnum, temp.* FROM "
-					+ "(SELECT * FROM test_member) temp) WHERE rnum BETWEEN ? and ?";
+					+ "(SELECT * FROM test_member ORDER BY id ASC) temp) WHERE rnum BETWEEN ? and ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
