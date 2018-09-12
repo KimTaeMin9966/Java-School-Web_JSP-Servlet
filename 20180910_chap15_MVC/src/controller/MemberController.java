@@ -61,7 +61,7 @@ public class MemberController extends HttpServlet {
 			System.out.println("로그인 프로세스 요청"); // OK
 			ms.loginCheck(request, response);
 		} else if(command.equals("/memberJoin.mb")) {
-			System.out.println("회원가입 프로세스 요청"); // OK
+			System.out.println("회원가입 프로세스 요청");
 			ms.joinCheck(request, response);
 		} else if(command.equals("/main.mb")) {
 			System.out.println("메인페이지 요청"); // OK
