@@ -50,10 +50,10 @@ public class MemberDao {
 		return Query;
 	}
 
-	public MemberVo loginProsess(MemberVo memberVo) {
+	public int loginProsess(MemberVo memberVo) {
 		conn = JdbcUtil.getConnection();
 		String sql = "";
-		MemberVo memberInfo = new MemberVo();
+		int result = 0;
 		
 		try {
 			sql = "SELECT * FROM test_member WHERE id = ? AND pass = ?";
@@ -61,20 +61,14 @@ public class MemberDao {
 			pstmt.setString(1, memberVo.getId());
 			pstmt.setString(2, memberVo.getPass());
 			rs = pstmt.executeQuery();
-			while (rs.next()) {
-				memberInfo.setId(rs.getString("id"));
-				memberInfo.setPass(rs.getString("pass"));
-				memberInfo.setName(rs.getString("name"));
-				memberInfo.setAddr(rs.getString("addr"));
-				memberInfo.setPhone(rs.getString("phone"));
-			}
+			if(rs.next()) { result = 1; }
 		} catch (SQLException e) { e.printStackTrace(); }
 		finally {
 			JdbcUtil.close(rs);
 			JdbcUtil.close(pstmt);
 			JdbcUtil.close(conn);
 		}
-		return memberInfo;
+		return result;
 	}
 	
 	// 로그인 정보 확인
@@ -141,7 +135,8 @@ public class MemberDao {
 			
 			conn = JdbcUtil.getConnection();
 			String sql = "SELECT * FROM (SELECT ROWNUM AS rnum, temp.* FROM "
-					+ "(SELECT * FROM test_member ORDER BY id ASC) temp) WHERE rnum BETWEEN ? and ?";
+					+ "(SELECT * FROM test_member ORDER BY name ASC) temp)"
+					+ " WHERE rnum BETWEEN ? AND ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, startRow);
 			pstmt.setInt(2, endRow);
@@ -150,6 +145,7 @@ public class MemberDao {
 			while(rs.next()) {
 				MemberVo memberVo = new MemberVo();
 				memberVo.setId(rs.getString("id"));
+				memberVo.setPass(rs.getString("pass"));
 				memberVo.setName(rs.getString("name"));
 				memberVo.setAddr(rs.getString("addr"));
 				memberVo.setPhone(rs.getString("phone"));
@@ -161,7 +157,7 @@ public class MemberDao {
 			JdbcUtil.close(pstmt);
 			JdbcUtil.close(conn);
 		}
-			return memberList;
+		return memberList;
 	}
 
 	public int getListCount() {
@@ -185,29 +181,42 @@ public class MemberDao {
 		return listCount;
 	}
 
-	/*public ArrayList<MemberVo> getMemberList() {
-		ArrayList<MemberVo> memberList = new ArrayList<>();
+	public void deleteMember(String id) {
 		try {
 			conn = JdbcUtil.getConnection();
-			String sql = "SELECT * FROM test_member ORDER BY name ASC";
+			String sql = "DELETE FROM test_member WHERE id = ?";
 			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				MemberVo memberVo = new MemberVo();
-				memberVo.setId(rs.getString(1));
-				memberVo.setPass(rs.getString(2));
-				memberVo.setName(rs.getString(3));
-				memberVo.setAddr(rs.getString(4));
-				memberVo.setPhone(rs.getString(5));
-				memberList.add(memberVo);
-			}
-		}
-		catch (SQLException e) { e.printStackTrace(); }
+			pstmt.setString(1, id);
+			pstmt.executeUpdate();
+		} catch (SQLException e) { e.printStackTrace(); }
 		finally {
-			JdbcUtil.close(rs);
 			JdbcUtil.close(pstmt);
 			JdbcUtil.close(conn);
 		}
-		return memberList;
-	}*/
+	}
+
+	public boolean memberUpdate(MemberVo member) {
+		boolean success = false;
+		
+		try {
+			conn = JdbcUtil.getConnection();
+			String sql = "UPDATE test_member SET pass = ?, name = ?, addr = ?, phone = ? WHERE id = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, member.getPass());
+			pstmt.setString(2, member.getName());
+			pstmt.setString(3, member.getAddr());
+			pstmt.setString(4, member.getPhone());
+			pstmt.setString(5, member.getId());
+			
+			int result = pstmt.executeUpdate();
+			
+			if(result != 0) { success = true; }
+		}
+		catch (SQLException e) { e.printStackTrace(); }
+		finally {
+			JdbcUtil.close(pstmt);
+			JdbcUtil.close(conn);
+		}
+		return success;
+	}
 }

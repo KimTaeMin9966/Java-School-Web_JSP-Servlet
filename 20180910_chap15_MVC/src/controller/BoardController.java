@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import service.BoardService;
+import service.MemberService;
 
 @WebServlet("*.bo")
 public class BoardController extends HttpServlet {
@@ -19,6 +20,8 @@ public class BoardController extends HttpServlet {
 	
 	private void doProsess(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
+
+		MemberService.loginCheck(request);
 		
 		System.out.println("요청이 들어옴");
 		String requestUri = request.getRequestURI();

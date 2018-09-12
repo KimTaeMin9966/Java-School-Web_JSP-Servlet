@@ -28,7 +28,15 @@
 	section a {
 		text-decoration: none;
 	}
+	table tr td:hover{
+		cursor:	pointer;
+	}
 </style>
+<script type="text/javascript">
+	function detail(id) {
+		location.href='memberDetail.mb?id='+id;
+	}
+</script>
 </head>
 <body>
 	<jsp:include page="../common/header.jsp" />
@@ -41,7 +49,7 @@
 			<th>전화번호</th>
 		</tr>
 		<c:forEach var="user" items="${memberList}">
-			<tr>
+			<tr onclick="detail('${user.id}');">
 				<td>${user.id}</td>
 				<td>${user.name}</td>
 				<td>${user.addr}</td>
@@ -51,31 +59,27 @@
 	</table>
 	<section>
 		<c:choose>
-			<c:when test="${pageInfo.page <=1}">
-				[이전] &nbsp;
-			</c:when>
+			<c:when test="${pageInfo.page <=1}"></c:when>
 			<c:otherwise>
-				<a href="management.mb?page=${pageInfo.page-1}">[이전]</a>
+				<a href="management.mb?page=${pageInfo.page - 1}">[이전]</a>
 			</c:otherwise>
 		</c:choose>
 		
 		<c:forEach var ="i" begin="${pageInfo.startPage}" end="${pageInfo.endPage}">
 			<c:choose>
-			<c:when test="${pageInfo.page eq i}">
-				<a href="management.mb?page=${i}"><span style="color:RED;">[${i}]</span></a>	
-			</c:when>
-			<c:otherwise>
-				<a href="management.mb?page=${i}"><span style="color:#CCC;">[${i}]</span></a>
-			</c:otherwise>
+				<c:when test="${pageInfo.page eq i}">
+					<a href="management.mb?page=${i}"><span style="color:RED;">[${i}]</span></a>	
+				</c:when>
+				<c:otherwise>
+					<a href="management.mb?page=${i}"><span style="color:#CCC;">[${i}]</span></a>
+				</c:otherwise>
 			</c:choose>
 		</c:forEach>
 		
 		<c:choose>
-			<c:when test="${pageInfo.page >= pageInfo.maxPage}">
-				[다음]
-			</c:when>
+			<c:when test="${pageInfo.page >= pageInfo.maxPage}"></c:when>
 			<c:otherwise>
-				<a href="management.mb?page=${pageInfo.page+1}">[다음]</a>
+				<a href="management.mb?page=${pageInfo.page + 1}">[다음]</a>
 			</c:otherwise>
 		</c:choose>
 	</section>

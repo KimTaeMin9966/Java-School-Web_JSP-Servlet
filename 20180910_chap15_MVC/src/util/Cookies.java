@@ -1,6 +1,6 @@
 package util;
 
-import java.io.UnsupportedEncodingException;
+import java.io.IOException;
 import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,11 +21,7 @@ public class Cookies {
 		}
 	}
 	
-	public Cookie getCookie(String id) {
-		return cookieMap.get(id);
-	}
-	
-	public String getValue(String id) throws UnsupportedEncodingException {
+	public String getValue(String id) throws IOException {
 		Cookie cookie = cookieMap.get(id);
 		if (cookie != null) {
 			return URLDecoder.decode(cookie.getValue(), "UTF-8");
@@ -54,6 +50,10 @@ public class Cookies {
 
 	public boolean exists(String id) {
 		return cookieMap.get(id) != null;
+	}
+
+	public Cookie getCookie(String id) {
+		return cookieMap.get(id);
 	}
 	
 }

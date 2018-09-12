@@ -28,7 +28,9 @@
 		</tr>
 		<tr>
 			<td colspan=2>
-				<input type="button" onclick="javascript:location.href='main.bo'" value="메인으로"/>
+				<input type="button" onclick="javascript:location.href='main.bo'" value="메인으로" />
+				<input type="button" onclick="javascript:location.href='update.mb'" value="정보수정" />
+				<input type="button" onclick="javascript:location.href='withdraw.mb'" value="회원탈퇴" />
 			</td>
 		</tr>
 	</table>

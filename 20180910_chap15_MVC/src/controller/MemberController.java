@@ -69,6 +69,29 @@ public class MemberController extends HttpServlet {
 			System.out.println("메인페이지 요청");
 			RequestDispatcher rd = request.getRequestDispatcher("/common/main.jsp");
 			rd.forward(request, response);
+		} else if(command.equals("/memberDetail.mb")) { // OK
+			System.out.println("회원 상세 정보 요청");
+			System.out.println("id : " + request.getParameter("id"));
+			ms.getMemberVo(request);
+			RequestDispatcher rd = request.getRequestDispatcher("/member/detail.jsp");
+			rd.forward(request, response);
+		} else if(command.equals("/deleteMember.mb")) { // OK
+			System.out.println("회원정보 삭제 요청");
+			ms.deleteMember(request, response);
+		} else if(command.equals("/update.mb")) { // OK
+			System.out.println("회원정보 수정창 요청");
+			RequestDispatcher rd = request.getRequestDispatcher("/member/update.jsp");
+			rd.forward(request, response);
+		} else if(command.equals("/memberUpdate.mb")) { // OK
+			System.out.println("수정 요청");
+			ms.memberUpdate(request, response);
+		} else if(command.equals("/withdraw.mb")) { // OK
+			System.out.println("회원정보 탈퇴 요청");
+			RequestDispatcher rd = request.getRequestDispatcher("/member/withdraw.jsp");
+			rd.forward(request, response);
+		} else if(command.equals("/withDrawSubmit.mb")) { // OK
+			System.out.println("회원 탈퇴 요청");
+			ms.withDrawSubmit(request, response);
 		}
 	}
 
