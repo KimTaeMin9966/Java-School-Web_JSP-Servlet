@@ -1,0 +1,8 @@
+@charset "UTF-8";
+#webContent {
+	float: right;
+	background-color: #333;
+	margin-top: 10px;
+	width: 970px;
+	height: 700px;
+}

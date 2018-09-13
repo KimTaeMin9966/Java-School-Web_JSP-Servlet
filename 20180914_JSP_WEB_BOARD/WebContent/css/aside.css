@@ -1,0 +1,55 @@
+@charset "UTF-8";
+.webInfo, .myInfo {
+	width: 125px;
+	height: 30px;
+	font-size: 20px;
+	background-color: #333;
+	color: white;
+	float: left;
+	text-align: center;
+}
+.myInfo {
+	margin-right: 10px;
+}
+#menu-bar {
+	width: 97px;
+	height: 30px;
+	font-size: 20px;
+	background-color: #333;
+	color: white;
+	float: left;
+	text-align: center;
+}
+.webInfo:hover, .myInfo:hover, #menu-bar:hover {
+	background-color: red;
+	cursor: pointer;
+}
+#webInfo-data {
+	width: 250px;
+	height: 65px;
+	background-color: #333;
+	color: white;
+	float: left;
+	text-align: center;
+}
+#webInfo-data-Info {
+	margin: 0 15px;
+}
+.webInfo-data-memberID:hover {
+	background-color: red;
+	cursor: pointer;
+}
+.webInfo-data-since {
+	float: left;
+}
+.webInfo-data-board-Info {
+	float: right;
+}
+.webInfo-data-since:hover {
+	background-color: red;
+	cursor: pointer;
+}
+.webInfo-data-board-Info:hover {
+	background-color: red;
+	cursor: pointer;
+}
