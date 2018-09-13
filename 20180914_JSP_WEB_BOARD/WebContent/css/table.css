@@ -1,0 +1,23 @@
+@charset "UTF-8";
+table {
+	border-collapse: collapse;
+	border: 1px soild #CCC;
+	width: 250px;
+	margin: 10px 0;
+}
+table th, table td {
+	border: 1px solid #333;
+	text-align: center;
+	height: 35px;
+}
+#ALL {
+	text-align: center;
+	height: 65px;
+}
+
+
+
+
+
+
+
