@@ -5,6 +5,7 @@ import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 
 public class NoticeVo {
+	int rnum;
 	int notice_num;
 	String notice_category;
 	String notice_author;
@@ -30,6 +31,9 @@ public class NoticeVo {
 			this.notice_content = request.getParameter("notice_content");
 		}
 	}
+	
+	public int getRnum() { return rnum; }
+	public void setRnum(int rnum) { this.rnum = rnum; }
 	public int getNotice_num() { return notice_num; }
 	public void setNotice_num(int notice_num) { this.notice_num = notice_num; }
 	public String getNotice_category() { return notice_category; }

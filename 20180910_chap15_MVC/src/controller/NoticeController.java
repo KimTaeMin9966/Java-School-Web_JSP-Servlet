@@ -40,6 +40,8 @@ public class NoticeController extends HttpServlet {
 		
 		if(command.equals("/notice.do")) { // OK
 			System.out.println("공지사항 리스트 요청");
+			ns.noticeList(request);
+			
 			nextPage = "/board/notice/notice_list.jsp";
 		} else if(command.equals("/noticeWriteForm.do")) { // OK
 			System.out.println("공지사항 작성창 요청");

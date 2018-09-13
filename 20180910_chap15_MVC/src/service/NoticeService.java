@@ -1,8 +1,11 @@
 package service;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 
 import dao.NoticeDao;
+import util.OraclePageMaker;
 import vo.NoticeVo;
 
 public class NoticeService {
@@ -15,6 +18,24 @@ public class NoticeService {
 		
 		return success;
 	}
-	
-	
+
+	public void noticeList(HttpServletRequest request) {
+		NoticeDao dao = NoticeDao.getInstance();
+		
+		int page = 1;
+		
+		if(request.getParameter("page") != null) {
+			page = Integer.parseInt(request.getParameter("page"));
+		}
+		
+		int listCount = dao.getListCount(); System.out.println("listCount : " + listCount);
+		
+		OraclePageMaker pageInfo = new OraclePageMaker(page, listCount);
+		
+		ArrayList<NoticeVo> noticeList = dao.getNoticeList(pageInfo);
+		
+		request.setAttribute("pageInfo", pageInfo);
+		request.setAttribute("noticeList", noticeList);
+		
+	}
 }

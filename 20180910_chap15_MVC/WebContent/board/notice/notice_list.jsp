@@ -34,12 +34,15 @@
 		</tr>
 		<c:forEach var="notice" items="${noticeList}">
 			<tr>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
+				<td>${notice.notice_num}</td>
+				<td>${notice.notice_title}</td>
+				<td>${notice.notice_author}</td>
+				<td>${notice.notice_date}</td>
 			</tr>
 		</c:forEach>
 	</table>
+	<article>
+		<%@ include file="../../common/page.jsp" %>
+	</article>
 </body>
 </html>

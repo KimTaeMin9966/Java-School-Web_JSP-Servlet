@@ -72,7 +72,7 @@
 		<c:forEach var ="i" begin="${pageInfo.startPage}" end="${pageInfo.endPage}">
 			<c:choose>
 				<c:when test="${pageInfo.page eq i}">
-					<a href="boardList.bo?page=${i}"><span style="color:RED;">[${i}]</span></a>	
+					<a href="boardList.bo?page=${i}"><span style="color:RED;">[${i}]</span></a>
 				</c:when>
 				<c:otherwise>
 					<a href="boardList.bo?page=${i}"><span style="color:#CCC;">[${i}]</span></a>
