@@ -100,4 +100,31 @@ public class NoticeDao {
 		finally { JdbcUtil.close(rs); JdbcUtil.close(pstmt); JdbcUtil.close(conn); }
 		return noticeList;
 	}
+
+	public NoticeVo getNoticeVo(int notice_num) {
+		conn = JdbcUtil.getConnection();
+		String sql = "";
+
+		NoticeVo noticeVo = null;
+		
+		try {
+			sql = "SELECT * FROM notice_board WHERE notice_num = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, notice_num);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				noticeVo = new NoticeVo();
+				noticeVo.setNotice_num(rs.getInt("notice_num"));
+				noticeVo.setNotice_category(rs.getString("notice_category"));
+				noticeVo.setNotice_author(rs.getString("notice_author"));
+				noticeVo.setNotice_title(rs.getString("notice_title"));
+				noticeVo.setNotice_content(rs.getString("notice_content"));
+				noticeVo.setNotice_date(rs.getTimestamp("notice_date"));
+			}
+		}
+		catch (SQLException e) { e.printStackTrace(); }
+		finally { JdbcUtil.close(rs); JdbcUtil.close(pstmt); JdbcUtil.close(conn); }
+		return noticeVo;
+	}
 }

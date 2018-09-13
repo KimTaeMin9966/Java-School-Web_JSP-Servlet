@@ -46,16 +46,17 @@ public class NoticeController extends HttpServlet {
 		} else if(command.equals("/noticeWriteForm.do")) { // OK
 			System.out.println("공지사항 작성창 요청");
 			nextPage = "/board/notice/notice_write.jsp";
-		} else if(command.equals("/noticeWrite.do")) { //
+		} else if(command.equals("/noticeWrite.do")) { // OK
 			System.out.println("공지사항 작성 요청");
 			
 			success = ns.noticeWrite(request);
 			
 			if(success) { nextPage = suc; }
 			else { nextPage = fail; }
-			
 		} else if(command.equals("/noticeDetail.do")) { // OK
 			System.out.println("공지사항 상세보기 요청");
+			ns.noticeDetail(request);
+			
 			nextPage = "/board/notice/notice_detail.jsp";
 			
 		} else if(command.equals("/noticeUpdateForm.do")) { // OK

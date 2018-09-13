@@ -36,6 +36,17 @@ public class NoticeService {
 		
 		request.setAttribute("pageInfo", pageInfo);
 		request.setAttribute("noticeList", noticeList);
+	}
+
+	public void noticeDetail(HttpServletRequest request) {
+		NoticeDao dao = NoticeDao.getInstance();
+		int notice_num = Integer.parseInt(request.getParameter("notice_num"));
+		
+		NoticeVo noticeVo = dao.getNoticeVo(notice_num);
+		request.setAttribute("notice", noticeVo);
+		
+		
+		
 		
 	}
 }

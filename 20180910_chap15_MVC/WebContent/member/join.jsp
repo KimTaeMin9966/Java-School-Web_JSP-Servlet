@@ -5,6 +5,23 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+	table {
+		border-collapse: collapse;
+		border: 1px soild #CCC;
+		width: 500px;
+		margin: 50px auto;
+	}
+	table th, table td {
+		border: 1px solid #333;
+		text-align: center;
+		height: 35px;
+	}
+	table td:nth-child(2) {
+		text-align: left;
+		padding-left: 10px;
+	}
+</style>
 </head>
 <body>
 	<jsp:include page="../common/header.jsp" />
