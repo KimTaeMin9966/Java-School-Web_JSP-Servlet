@@ -36,7 +36,7 @@
 		</tr>
 		<tr>
 			<td>내용</td>
-			<td><textarea readonly>${notice.notice_content}</textarea></td>
+			<td><textarea readonly style="width: 350px; height: 200px;">${notice.notice_content}</textarea></td>
 		</tr>
 		<tr>
 			<td>작성일</td>
@@ -45,7 +45,7 @@
 		<tr>
 			<td colspan="2">
 				<a href="noticeUpdateForm.do?notice_num=${notice.notice_num}">수정</a>
-				<a href="noticeDelete.do?notice_num${notice.notice_num}">삭제</a>
+				<a href="noticeDelete.do?notice_num=${notice.notice_num}">삭제</a>
 			</td>
 		</tr>
 	</table>

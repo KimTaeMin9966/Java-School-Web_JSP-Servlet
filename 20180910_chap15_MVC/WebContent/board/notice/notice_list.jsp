@@ -6,6 +6,26 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+	table {
+		border-collapse: collapse;
+		border: 1px soild #CCC;
+		width: 500px;
+		margin: 50px auto;
+	}
+	table th, table td {
+		border: 1px solid #333;
+		text-align: center;
+		height: 35px;
+	}
+	table td:nth-child(2) {
+		text-align: left;
+		padding-left: 10px;
+	}
+	article {
+		text-align: center;
+	}
+</style>
 </head>
 <body>
 	<jsp:include page="../../common/header.jsp"/>
@@ -15,18 +35,19 @@
 	</c:if>
 	<table>
 		<tr>
-			<td colspan="4">
+			<td colspan="5">
 				<form action="noticeSearch.do" method="GET">
 					<select name="searchName">
 						<option value="author">작성자</option>
 						<option value="title">제목</option>
 					</select>
-					<input type="text" name="searchValue" />
+					<input type="text" name="searchValue" value="${searchValue}" />
 					<input type="submit" value="검색" />
 				</form>
 			</td>
 		</tr>
 		<tr>
+			<th>행번호</th>
 			<th>글번호</th>
 			<th>제목</th>
 			<th>작성자</th>
@@ -34,6 +55,7 @@
 		</tr>
 		<c:forEach var="notice" items="${noticeList}">
 			<tr>
+				<td>${notice.rnum}</td>
 				<td>${notice.notice_num}</td>
 				<td>
 					<a href="noticeDetail.do?notice_num=${notice.notice_num}">

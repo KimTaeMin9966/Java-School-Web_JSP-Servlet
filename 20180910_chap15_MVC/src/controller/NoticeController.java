@@ -34,7 +34,9 @@ public class NoticeController extends HttpServlet {
 		System.out.println(command);
 		
 		String nextPage = null;
+		
 		boolean success = false;
+		
 		String suc = "/board/notice/notice_success.jsp";
 		String fail = "/board/notice/notice_fail.jsp";
 		
@@ -60,12 +62,30 @@ public class NoticeController extends HttpServlet {
 			nextPage = "/board/notice/notice_detail.jsp";
 			
 		} else if(command.equals("/noticeUpdateForm.do")) { // OK
-			System.out.println("공지사항 수정 요청");
+			System.out.println("공지사항 수정창 요청");
+			ns.noticeDetail(request);
+			
 			nextPage = "/board/notice/notice_update.jsp";
 			
-		} else if(command.equals("/noticeSearch.do")) {
-			System.out.println("공지사항 검색 요청");
+		} else if(command.equals("/noticeUpdate.do")) { // OK
+			System.out.println("공지사항 수정 요청");
+			success = ns.noticeUpdate(request);
 			
+			if(success) { nextPage = suc; }
+			else { nextPage = fail; }
+		} else if(command.equals("/noticeDelete.do")) { // OK
+			System.out.println("공지사항 삭제 요청");
+			success = ns.noticeDelete(request);
+			
+			if(success) { nextPage = suc; }
+			else { nextPage = fail; }
+		} else if(command.equals("/noticeSearch.do")) {
+			// 2018/09/13일 오늘 JSP과정이 마무리되고 내일은 스프링과정으로 넘어간다.
+			// 마지막 작성입니다. 이프로젝트에서 클라이맥스입니다.
+			System.out.println("공지사항 검색 요청");
+			ns.search(request);
+			
+			nextPage = "/board/notice/notice_list.jsp";
 		}
 		
 		if (nextPage != null) {

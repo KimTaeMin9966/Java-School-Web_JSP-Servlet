@@ -92,7 +92,7 @@ public class MemberDao {
 		MemberVo member = new MemberVo();
 		try {
 			conn = JdbcUtil.getConnection();
-			String sql = "SELECT * FROM test_member WHERE id =?";
+			String sql = "SELECT * FROM test_member WHERE id = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, value);
 			rs = pstmt.executeQuery();

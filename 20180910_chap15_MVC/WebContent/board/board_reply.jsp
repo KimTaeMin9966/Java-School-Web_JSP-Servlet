@@ -39,7 +39,7 @@
 			</tr>
 			<tr>
 				<td colspan=2>
-					<input type="submit" value="수정완료"/>
+					<input type="submit" value="답변쓰기"/>
 					<input type="reset" value="다시쓰기"/>
 				</td>
 			</tr>
