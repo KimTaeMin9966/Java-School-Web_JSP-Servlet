@@ -19,3 +19,16 @@ CREATE TABLE test_board (
 SELECT * FROM test_board;
 
 CREATE SEQUENCE test_board_seq INCREMENT BY 1 MINVALUE 0 START WITH 0;
+
+CREATE TABLE notice_board(
+	notice_num NUMBER PRIMARY KEY,
+	notice_category VARCHAR2(20),
+	notice_author VARCHAR2(50),
+	notice_title VARCHAR2(50),
+	notice_content VARCHAR2(2000),
+	notice_date DATE
+);
+
+CREATE SEQUENCE notice_board_seq INCREMENT BY 1 MINVALUE 0 START WITH 0;
+
+SELECT * FROM NOTICE_BOARD;

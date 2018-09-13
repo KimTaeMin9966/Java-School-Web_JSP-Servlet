@@ -54,7 +54,7 @@
 	</div>
 	<div>
 		<ul>
-			<li>공지사항</li>
+			<li><a href="notice.do">공지사항</a></li>
 			<li><a href="boardList.bo">질문과답변</a></li>
 		</ul>
 	</div>
