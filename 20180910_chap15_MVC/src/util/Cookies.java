@@ -23,11 +23,9 @@ public class Cookies {
 	
 	public String getValue(String id) throws IOException {
 		Cookie cookie = cookieMap.get(id);
-		if (cookie != null) {
-			return URLDecoder.decode(cookie.getValue(), "UTF-8");
-		} else {
-			return null;
-		}
+		
+		if (cookie != null) { return URLDecoder.decode(cookie.getValue(), "UTF-8"); }
+		else { return null; }
 	}
 	
 	public static Cookie createCookie(String id, String value, int maxAge) {
@@ -48,12 +46,7 @@ public class Cookies {
 		}
 	}
 
-	public boolean exists(String id) {
-		return cookieMap.get(id) != null;
-	}
-
-	public Cookie getCookie(String id) {
-		return cookieMap.get(id);
-	}
+	public boolean exists(String id) { return cookieMap.get(id) != null; }
+	public Cookie getCookie(String id) { return cookieMap.get(id); }
 	
 }

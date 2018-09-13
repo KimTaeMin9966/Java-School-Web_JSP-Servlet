@@ -2,11 +2,7 @@ package service;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -51,7 +47,7 @@ public class MemberService {
 		out.println("</script>");
 	}
 
-	public void loginCheck(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException {
+	public void loginCheck(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		MemberVo memberVo = new MemberVo();
 		String id = request.getParameter("id");
 		String pass = request.getParameter("pass");
@@ -67,23 +63,24 @@ public class MemberService {
 		PrintWriter out = response.getWriter();
 		
 		if(Query != 0) {
-			System.out.println("로그인성공");
 			out.print("<script>");
 			if(login != null) {
 				HttpSession session = request.getSession();
 				session.setAttribute("member", Query);
+				
 				response.addCookie(Cookies.createCookie("id", id, 60*60*24*15));
+				
 				out.print("alert('로그인성공');");
 				out.print("location.href='main.mb'");
 			} else {
 				HttpSession session = request.getSession();
 				session.setAttribute("member", Query);
+				
 				out.print("alert('로그인성공');");
 				out.print("location.href='main.mb'");
 			}
 			out.print("</script>");
 		} else {
-			System.out.println("로그인실패");
 			out.print("<script>");
 			out.print("alert('로그인실패');");
 			out.print("location.href='login.mb'");
@@ -94,6 +91,7 @@ public class MemberService {
 	public void logOut(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		HttpSession session = request.getSession();
 		session.invalidate();
+		
 		Cookies cookies = new Cookies(request);
 		cookies.removeCookie("id", request, response);
 		
@@ -108,6 +106,7 @@ public class MemberService {
 	public void logOut2(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		HttpSession session = request.getSession();
 		session.invalidate();
+		
 		Cookies cookies = new Cookies(request);
 		cookies.removeCookie("id", request, response);
 		
@@ -120,6 +119,7 @@ public class MemberService {
 	
 	public static void loginCheck(HttpServletRequest request) throws IOException {
 		Cookies cookies = new Cookies(request);
+		
 		if(cookies.exists("id")) {
 			MemberDao md = MemberDao.getInstance();
 			MemberVo member = md.getMemberVo(cookies.getValue("id"));
@@ -141,19 +141,11 @@ public class MemberService {
 		request.setAttribute("memberList", memberList);
 		
 		int listCount = md.getListCount();
-		System.out.println("전체 게시물의 갯수 : " + listCount);
-		
 		int maxPage = (listCount - 1) / 10 + 1;
-		System.out.println("전체 Page : " + maxPage);
-		
 		int startPage = (page - 1) / 10 * 10 + 1;
-		System.out.println("start Page : " + startPage);
-		
 		int endPage = startPage + 9;
-		if(endPage > maxPage) {
-			endPage = maxPage;
-		}
-		System.out.println("end Page : " + endPage);
+		
+		if(endPage > maxPage) { endPage = maxPage; }
 		
 		PageInfo pageInfo = new PageInfo();
 		pageInfo.setPage(page);
@@ -161,16 +153,14 @@ public class MemberService {
 		pageInfo.setStartPage(startPage);
 		pageInfo.setEndPage(endPage);
 		pageInfo.setListCount(listCount);
-		request.setAttribute("pageInfo", pageInfo);
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		String today = sdf.format(new Date());
-		request.setAttribute("today", today);
+		request.setAttribute("pageInfo", pageInfo);
 	}
 
 	public void getMemberVo(HttpServletRequest request) {
 		MemberDao md = MemberDao.getInstance();
 		MemberVo memberVo = md.getMemberVo(request.getParameter("id"));
+		
 		request.setAttribute("detailUser", memberVo);
 	}
 
@@ -210,9 +200,9 @@ public class MemberService {
 			HttpSession session = request.getSession();
 			session.setAttribute("member", member);
 			out.print("alert('회원정보 수정 완료');");
-		} else {
-			out.print("alert('회원정보 수정 실패');");
 		}
+		else { out.print("alert('회원정보 수정 실패');"); }
+		
 		out.print("location.href='update.mb'");
 		out.print("</script>");
 	}

@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -12,9 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import service.MemberService;
 
-/**
- * Servlet implementation class MemberController
- */
 @WebServlet("*.mb")
 public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -45,6 +41,7 @@ public class MemberController extends HttpServlet {
 		} else if(command.equals("/management.mb")) { // OK
 			System.out.println("회원관리 요청");
 			ms.memberList(request);
+			
 			RequestDispatcher rd = request.getRequestDispatcher("/member/management.jsp");
 			rd.forward(request, response);
 		} else if(command.equals("/logOut.mb")) { // OK
@@ -60,8 +57,7 @@ public class MemberController extends HttpServlet {
 			rd.forward(request, response);
 		} else if(command.equals("/memberLogin.mb")) { // OK
 			System.out.println("로그인 프로세스 요청");
-			try { ms.loginCheck(request, response); }
-			catch (SQLException e) { e.printStackTrace(); }
+			ms.loginCheck(request, response);
 		} else if(command.equals("/memberJoin.mb")) { // OK
 			System.out.println("회원가입 프로세스 요청");
 			ms.joinCheck(request, response);
@@ -71,8 +67,8 @@ public class MemberController extends HttpServlet {
 			rd.forward(request, response);
 		} else if(command.equals("/memberDetail.mb")) { // OK
 			System.out.println("회원 상세 정보 요청");
-			System.out.println("id : " + request.getParameter("id"));
 			ms.getMemberVo(request);
+			
 			RequestDispatcher rd = request.getRequestDispatcher("/member/detail.jsp");
 			rd.forward(request, response);
 		} else if(command.equals("/deleteMember.mb")) { // OK
@@ -94,5 +90,5 @@ public class MemberController extends HttpServlet {
 			ms.withDrawSubmit(request, response);
 		}
 	}
-
+	
 }

@@ -25,33 +25,28 @@ public class JdbcUtil {
 	}
 	
 	public static void close(Connection conn) {
-		try {
-			if(conn != null) { conn.close(); }
-		} catch (SQLException e) { e.printStackTrace(); }
+		try { if(conn != null) { conn.close(); } }
+		catch (SQLException e) { e.printStackTrace(); }
 	}
 
 	public static void commit(Connection conn) {
-		try {
-			conn.commit();
-		} catch (SQLException e) { e.printStackTrace(); }
+		try { conn.commit(); }
+		catch (SQLException e) { e.printStackTrace(); }
 	}
 	
 	public static void rollback(Connection conn) {
-		try {
-			conn.rollback();
-		} catch (SQLException e) { e.printStackTrace(); }
+		try { conn.rollback(); }
+		catch (SQLException e) { e.printStackTrace(); }
 	}
 	
 	public static void close(PreparedStatement pstmt) {
-		try {
-			if(pstmt != null) { pstmt.close(); }
-		} catch (SQLException e) { e.printStackTrace(); }
+		try { if(pstmt != null) { pstmt.close(); } }
+		catch (SQLException e) { e.printStackTrace(); }
 	}
 	
 	public static void close(ResultSet rs) {
-		try {
-			if(rs != null) { rs.close(); }
-		} catch (SQLException e) { e.printStackTrace(); }
+		try { if(rs != null) { rs.close(); } }
+		catch (SQLException e) { e.printStackTrace(); }
 	}
 	
 }

@@ -13,23 +13,33 @@
 		<table>
 			<tr>
 				<td>작성자</td>
-				<td><input type="text" name="board_name" required="required" /></td>
+				<td>
+					<input type="text" name="board_name" required="required" />
+				</td>
 			</tr>
 			<tr>
 				<td>비밀번호</td>
-				<td><input type="password" name="board_pass" /></td>
+				<td>
+					<input type="password" name="board_pass" />
+				</td>
 			</tr>
 			<tr>
 				<td>제목</td>
-				<td><input type="text" name="board_title" /></td>
+				<td>
+					<input type="text" name="board_title" />
+				</td>
 			</tr>
 			<tr>
 				<td>글내용</td>
-				<td><textarea name="board_content" rows="10" cols="40"></textarea></td>
+				<td>
+					<textarea name="board_content" rows="10" cols="40"></textarea>
+				</td>
 			</tr>
 			<tr>
 				<td>첨부파일</td>
-				<td><input type="file" name="board_file" /></td>
+				<td>
+					<input type="file" name="board_file" />
+				</td>
 			</tr>
 			<tr>
 				<td colspan="2">

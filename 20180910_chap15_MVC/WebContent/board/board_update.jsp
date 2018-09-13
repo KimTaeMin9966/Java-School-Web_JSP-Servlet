@@ -13,19 +13,27 @@
 		<table>
 			<tr>
 				<td>글쓴이</td>
-				<td><input type="text" name="board_name" value="${boardVo.board_name}" /></td>
+				<td>
+					<input type="text" name="board_name" value="${boardVo.board_name}" />
+				</td>
 			</tr>
 			<tr>
 				<td>비밀번호</td>
-				<td><input type="password" name="board_pass" /></td>
+				<td>
+					<input type="password" name="board_pass" />
+				</td>
 			</tr>
 			<tr>
 				<td>제목</td>
-				<td><input type="text" name="board_title" value="${boardVo.board_title}" /></td>
+				<td>
+					<input type="text" name="board_title" value="${boardVo.board_title}" />
+				</td>
 			</tr>
 			<tr>
 				<td>내용</td>
-				<td><textarea name="board_content" rows="10" cols="40">${boardVo.board_content}</textarea></td>
+				<td>
+					<textarea name="board_content" rows="10" cols="40">${boardVo.board_content}</textarea>
+				</td>
 			</tr>
 			<tr>
 				<td>첨부파일</td>

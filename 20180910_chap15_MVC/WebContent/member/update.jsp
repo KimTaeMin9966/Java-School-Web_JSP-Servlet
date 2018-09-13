@@ -13,23 +13,33 @@
 		<table>
 			<tr>
 				<td>아이디</td>
-				<td><input type="text" name="id" value="${member.id}" readonly /></td>
+				<td>
+					<input type="text" name="id" value="${member.id}" readonly />
+				</td>
 			</tr>
 			<tr>
 				<td>비밀번호</td>
-				<td><input type="text" name="pass" value="${member.pass}" /></td>
+				<td>
+					<input type="text" name="pass" value="${member.pass}" />
+				</td>
 			</tr>
 			<tr>
 				<td>이름</td>
-				<td><input type="text" name="name" value="${member.name}" /></td>
+				<td>
+					<input type="text" name="name" value="${member.name}" />
+				</td>
 			</tr>
 			<tr>
 				<td>주소</td>
-				<td><input type="text" name="addr" value="${member.addr}" /></td>
+				<td>
+					<input type="text" name="addr" value="${member.addr}" />
+				</td>
 			</tr>
 			<tr>
 				<td>전화번호</td>
-				<td><input type="text" name="phone" value="${member.phone}" /></td>
+				<td>
+					<input type="text" name="phone" value="${member.phone}" />
+				</td>
 			</tr>
 			<tr>
 				<td colspan=2>

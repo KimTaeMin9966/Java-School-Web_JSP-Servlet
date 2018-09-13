@@ -55,67 +55,34 @@
 				<td>${board.board_name}</td>
 				<td>
 					<c:choose>
-						<c:when test="${today == board.board_day_date}">
-							${board.board_time_date}
-						</c:when>
-						<c:otherwise>
-							${board.board_day_date}
-						</c:otherwise>
+						<c:when test="${today == board.board_day_date}">${board.board_time_date}</c:when>
+						<c:otherwise>${board.board_day_date}</c:otherwise>
 					</c:choose>
 				</td>
 				<td>${board.board_readcount}</td>
 			</tr>
 		</c:forEach>
 	</table>
-	<%-- <c:choose>
-		<c:when test="${pageInfo.startPage <=1}">
-			[이전] &nbsp;
-		</c:when>
-		<c:otherwise>
-			<a href="boardList.bo?page=${pageInfo.startPage - 1}">[이전]</a>
-		</c:otherwise>
-	</c:choose>
-	
-	<c:forEach var ="i" begin="${pageInfo.startPage}" end="${pageInfo.endPage}">
-		<a href="boarList.bo?page=${i}">[${i}]</a>
-	</c:forEach>
-	
-	<c:choose>
-		<c:when test="${pageInfo.endPage >= pageInfo.maxPage}">
-			[다음]
-		</c:when>
-		<c:otherwise>
-			<a href="boardList.bo?page=${pageInfo.endPage + 1}">[다음]</a>
-		</c:otherwise>
-	</c:choose> --%>
 	<section>
 		<c:choose>
-			<c:when test="${pageInfo.page <=1}">
-				[이전] &nbsp;
-			</c:when>
-			<c:otherwise>
-				<a href="boardList.bo?page=${pageInfo.page-1}">[이전]</a>
-			</c:otherwise>
+			<c:when test="${pageInfo.page <=1}">[이전] &nbsp;</c:when>
+			<c:otherwise><a href="boardList.bo?page=${pageInfo.page-1}">[이전]</a></c:otherwise>
 		</c:choose>
 		
 		<c:forEach var ="i" begin="${pageInfo.startPage}" end="${pageInfo.endPage}">
 			<c:choose>
-			<c:when test="${pageInfo.page eq i}">
-				<a href="boardList.bo?page=${i}"><span style="color:RED;">[${i}]</span></a>	
-			</c:when>
-			<c:otherwise>
-				<a href="boardList.bo?page=${i}"><span style="color:#CCC;">[${i}]</span></a>
-			</c:otherwise>
+				<c:when test="${pageInfo.page eq i}">
+					<a href="boardList.bo?page=${i}"><span style="color:RED;">[${i}]</span></a>	
+				</c:when>
+				<c:otherwise>
+					<a href="boardList.bo?page=${i}"><span style="color:#CCC;">[${i}]</span></a>
+				</c:otherwise>
 			</c:choose>
 		</c:forEach>
 		
 		<c:choose>
-			<c:when test="${pageInfo.page >= pageInfo.maxPage}">
-				[다음]
-			</c:when>
-			<c:otherwise>
-				<a href="boardList.bo?page=${pageInfo.page+1}">[다음]</a>
-			</c:otherwise>
+			<c:when test="${pageInfo.page >= pageInfo.maxPage}">[다음]</c:when>
+			<c:otherwise><a href="boardList.bo?page=${pageInfo.page+1}">[다음]</a></c:otherwise>
 		</c:choose>
 	</section>
 </body>

@@ -42,9 +42,7 @@
 			<c:choose>
 				<c:when test="${!empty member}">
 					<li><a href="info.mb">${member.name}</a></li>
-					<c:if test="${member.id eq 'admin'}">
-						<li><a href="management.mb">회원관리</a></li>
-					</c:if>
+					<c:if test="${member.id eq 'admin'}"><li><a href="management.mb">회원관리</a></li></c:if>
 					<li><a href="logOut.mb">로그아웃</a></li>
 				</c:when>
 				<c:otherwise>

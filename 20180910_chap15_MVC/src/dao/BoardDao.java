@@ -28,15 +28,10 @@ public class BoardDao {
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
-			while(rs.next()) {
-				listCount = rs.getInt(1);
-			}
-		} catch (SQLException e) { e.printStackTrace(); }
-		finally {
-			JdbcUtil.close(rs);
-			JdbcUtil.close(pstmt);
-			JdbcUtil.close(conn);
+			while(rs.next()) { listCount = rs.getInt(1); }
 		}
+		catch (SQLException e) { e.printStackTrace(); }
+		finally { JdbcUtil.close(rs); JdbcUtil.close(pstmt); JdbcUtil.close(conn); }
 		return listCount;
 	}
 	
@@ -65,12 +60,9 @@ public class BoardDao {
 			pstmt.setInt(8, 0);
 			pstmt.setInt(9, 0);
 			pstmt.executeUpdate();
-		} catch (SQLException e) { e.printStackTrace(); }
-		finally {
-			JdbcUtil.close(rs);
-			JdbcUtil.close(pstmt);
-			JdbcUtil.close(conn);
 		}
+		catch (SQLException e) { e.printStackTrace(); }
+		finally { JdbcUtil.close(rs); JdbcUtil.close(pstmt); JdbcUtil.close(conn); }
 	}
 	
 	public ArrayList<BoardVo> getBoardList(int page, int count) {
@@ -81,7 +73,6 @@ public class BoardDao {
 			int endRow = startRow + count;
 			
 			conn = JdbcUtil.getConnection();
-			//String sql = "SELECT * FROM test_board ORDER BY board_re_ref DESC, board_re_seq ASC";
 			String sql = "SELECT * FROM (SELECT ROWNUM AS rnum, temp.* FROM "
 					+ "(SELECT * FROM test_board ORDER BY board_re_ref DESC, board_re_seq ASC) temp)"
 					+ " WHERE rnum BETWEEN ? and ?";
@@ -105,12 +96,9 @@ public class BoardDao {
 				boardVo.setBoard_date(rs.getTimestamp("board_date"));
 				boardList.add(boardVo);
 			}
-		} catch (SQLException e) { e.printStackTrace(); }
-		finally {
-			JdbcUtil.close(rs);
-			JdbcUtil.close(pstmt);
-			JdbcUtil.close(conn);
 		}
+		catch (SQLException e) { e.printStackTrace(); }
+		finally { JdbcUtil.close(rs); JdbcUtil.close(pstmt); JdbcUtil.close(conn); }
 		return boardList;
 	}
 	
@@ -137,29 +125,23 @@ public class BoardDao {
 				boardVo.setBoard_readcount(rs.getInt("board_readcount"));
 				boardVo.setBoard_date(rs.getTimestamp("board_date"));
 			}
-		} catch (SQLException e) { e.printStackTrace(); }
-		finally {
-			JdbcUtil.close(rs);
-			JdbcUtil.close(pstmt);
-			JdbcUtil.close(conn);
 		}
+		catch (SQLException e) { e.printStackTrace(); }
+		finally { JdbcUtil.close(rs); JdbcUtil.close(pstmt); JdbcUtil.close(conn); }
 		return boardVo;
 	}
 	
 	public void updateReadCount(int board_num) {
 		conn = JdbcUtil.getConnection();
-		System.out.println("update read count 호출");
 		
 		try {
 			String sql = "UPDATE test_board SET board_readcount = board_readcount + 1 WHERE board_num = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, board_num);
 			pstmt.executeUpdate();
-		} catch (SQLException e) { e.printStackTrace(); }
-		finally {
-			JdbcUtil.close(pstmt);
-			JdbcUtil.close(conn);
 		}
+		catch (SQLException e) { e.printStackTrace(); }
+		finally { JdbcUtil.close(pstmt); JdbcUtil.close(conn); }
 	}
 
 	public void boardReplySubmit(BoardVo boardVo) {
@@ -193,11 +175,9 @@ public class BoardDao {
 			pstmt.setInt(9, 0);
 			pstmt.executeUpdate();
 			JdbcUtil.commit(conn);
-		} catch (SQLException e) { e.printStackTrace(); JdbcUtil.rollback(conn); }
-		finally {
-			JdbcUtil.close(pstmt);
-			JdbcUtil.close(conn);
 		}
+		catch (SQLException e) { e.printStackTrace(); JdbcUtil.rollback(conn); }
+		finally { JdbcUtil.close(pstmt); JdbcUtil.close(conn); }
 	}
 
 	public void boardUpdateSubmit(BoardVo boardVo) {
@@ -214,16 +194,14 @@ public class BoardDao {
 			pstmt.setInt(5, boardVo.getBoard_num());
 			pstmt.setString(6, boardVo.getBoard_pass());
 			pstmt.executeUpdate();
-			System.out.println("수정 완료");
-		} catch (SQLException e) { e.printStackTrace(); }
-		finally {
-			JdbcUtil.close(pstmt);
-			JdbcUtil.close(conn);
 		}
+		catch (SQLException e) { e.printStackTrace(); }
+		finally { JdbcUtil.close(pstmt); JdbcUtil.close(conn); }
 	}
 
 	public boolean boardDeleteSubmit(BoardVo boardVo) {
 		boolean success = false;
+		
 		try {
 			conn = JdbcUtil.getConnection();
 			String sql = "";
@@ -238,18 +216,13 @@ public class BoardDao {
 					sql = "DELETE FROM test_board WHERE board_num = ?";
 					pstmt = conn.prepareStatement(sql);
 					pstmt.setInt(1, boardVo.getBoard_num());
-					pstmt.executeUpdate();
-					success = true;
+					int sess = pstmt.executeUpdate();
+					if(sess != 0) { success = true; }
 				}
-			} else {
-				success = false;
 			}
-		} catch (SQLException e) { e.printStackTrace(); success = false; }
-		finally {
-			JdbcUtil.close(rs);
-			JdbcUtil.close(pstmt);
-			JdbcUtil.close(conn);
 		}
+		catch (SQLException e) { e.printStackTrace(); }
+		finally { JdbcUtil.close(rs); JdbcUtil.close(pstmt); JdbcUtil.close(conn); }
 		return success;
 	}
 	

@@ -36,6 +36,7 @@ public class BoardService {
 		String board_title = multi.getParameter("board_title");
 		String board_content = multi.getParameter("board_content");
 		String board_file = multi.getOriginalFileName((String)multi.getFileNames().nextElement());
+		
 		boardVo.setBoard_name(board_name);
 		boardVo.setBoard_pass(board_pass);
 		boardVo.setBoard_title(board_title);
@@ -60,19 +61,11 @@ public class BoardService {
 		request.setAttribute("boardList", boardList);
 		
 		int listCount = bd.getListCount();
-		System.out.println("전체 게시물의 갯수 : " + listCount);
-		
 		int maxPage = (listCount - 1) / 10 + 1;
-		System.out.println("전체 Page : " + maxPage);
-		
 		int startPage = (page - 1) / 10 * 10 + 1;
-		System.out.println("start Page : " + startPage);
-		
 		int endPage = startPage + 9;
-		if(endPage > maxPage) {
-			endPage = maxPage;
-		}
-		System.out.println("end Page : " + endPage);
+		
+		if(endPage > maxPage) { endPage = maxPage; }
 		
 		PageInfo pageInfo = new PageInfo();
 		pageInfo.setPage(page);
@@ -91,9 +84,12 @@ public class BoardService {
 	public void boardDetail(HttpServletRequest request) {
 		int board_num = Integer.parseInt(request.getParameter("board_num"));
 		BoardVo boardVo = new BoardVo();
+		
 		BoardDao bd = BoardDao.getInstance();
 		boardVo = bd.getBoardVo(board_num);
+		
 		bd.updateReadCount(board_num);
+		
 		request.setAttribute("boardVo", boardVo);
 	}
 	
@@ -101,7 +97,9 @@ public class BoardService {
 	public void boardreply(HttpServletRequest request) {
 		int board_num = Integer.parseInt(request.getParameter("board_num"));
 		BoardDao bd = BoardDao.getInstance();
+		
 		BoardVo boardVo = bd.getBoardVo(board_num);
+		
 		request.setAttribute("boardVo", boardVo);
 	}
 
@@ -129,6 +127,7 @@ public class BoardService {
 		
 		BoardDao bd = BoardDao.getInstance();
 		bd.boardReplySubmit(boardVo);
+		
 		response.sendRedirect(request.getContextPath() + "/boardList.bo");
 	}
 	
@@ -138,6 +137,7 @@ public class BoardService {
 		
 		BoardDao bd = BoardDao.getInstance();
 		BoardVo boardVo = bd.getBoardVo(board_num);
+		
 		request.setAttribute("boardVo", boardVo);
 	}
 
@@ -166,6 +166,7 @@ public class BoardService {
 			
 			BoardDao bd = BoardDao.getInstance();
 			bd.boardUpdateSubmit(boardVo);
+			
 			response.sendRedirect(request.getContextPath() + "/boardDetail.bo?board_num=" + board_num);
 		} catch (IOException e) { e.printStackTrace(); }
 	}
@@ -210,32 +211,26 @@ public class BoardService {
 			String downLoadPath = context.getRealPath("boardUpload");
 			
 			String filePath = downLoadPath + "\\" + file_name;
-			System.out.println("filePath : " + filePath);
 			
 			String mimeType = context.getMimeType(filePath);
-			System.out.println("type : " + mimeType);
-			if(mimeType == null) {
-				mimeType = "application/octet-stream";
-			}
+			
+			if(mimeType == null) { mimeType = "application/octet-stream"; }
 			response.setContentType(mimeType);
 			
 			String agent = request.getHeader("User-Agent");
 			boolean isbrowser = (agent.indexOf("MSIE") > -1 || agent.indexOf("Trident") > -1);
-			if(isbrowser) {
-				file_name = URLEncoder.encode(file_name, "UTF-8").replaceAll("\\", "%20");
-			} else {
-				file_name = new String(file_name.getBytes("UTF-8"), "ISO-8859-1");
-			}
+			
+			if(isbrowser) { file_name = URLEncoder.encode(file_name, "UTF-8").replaceAll("\\", "%20"); }
+			else { file_name = new String(file_name.getBytes("UTF-8"), "ISO-8859-1"); }
+			
 			response.setHeader("Content-Disposition", "attachment; filename=" + file_name);
 			ServletOutputStream out2 = response.getOutputStream();
 			
 			int numRead;
 			byte[] bytes = new byte[4096];
-			
 			FileInputStream fi = new FileInputStream(filePath);
-			while ((numRead = fi.read(bytes, 0, bytes.length)) != -1) {
-				out2.write(bytes, 0, numRead);
-			}
+			
+			while ((numRead = fi.read(bytes, 0, bytes.length)) != -1) { out2.write(bytes, 0, numRead); }
 			out2.flush();
 			out2.close();
 			fi.close();

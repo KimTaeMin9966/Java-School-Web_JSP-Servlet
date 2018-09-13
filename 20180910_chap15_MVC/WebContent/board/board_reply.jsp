@@ -33,7 +33,9 @@
 			</tr>
 			<tr>
 				<td>내용</td>
-				<td><textarea name="board_content" rows="10" cols="40"></textarea></td>
+				<td>
+					<textarea name="board_content" rows="10" cols="40"></textarea>
+				</td>
 			</tr>
 			<tr>
 				<td colspan=2>

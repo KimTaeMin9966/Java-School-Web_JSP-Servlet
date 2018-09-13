@@ -8,11 +8,10 @@ import vo.MemberVo;
 
 public class MemberDao {
 	Connection conn = null;
-	PreparedStatement pstmt =null;
+	PreparedStatement pstmt = null;
 	ResultSet rs = null;
 
 	private static MemberDao memberDao;
-	
 	private MemberDao() {}
 
 	public static MemberDao getInstance() {
@@ -30,9 +29,7 @@ public class MemberDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, memberVo.getId());
 			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				return Query;
-			}
+			if(rs.next()) { return Query; }
 			
 			sql = "INSERT INTO test_member VALUES(?, ?, ?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
@@ -42,11 +39,9 @@ public class MemberDao {
 			pstmt.setString(4, memberVo.getAddr());
 			pstmt.setString(5, memberVo.getPhone());
 			Query = pstmt.executeUpdate();
-		} catch (SQLException e) { e.printStackTrace(); }
-		finally {
-			JdbcUtil.close(pstmt);
-			JdbcUtil.close(conn);
 		}
+		catch (SQLException e) { e.printStackTrace(); }
+		finally { JdbcUtil.close(pstmt); JdbcUtil.close(conn); }
 		return Query;
 	}
 
@@ -62,12 +57,9 @@ public class MemberDao {
 			pstmt.setString(2, memberVo.getPass());
 			rs = pstmt.executeQuery();
 			if(rs.next()) { result = 1; }
-		} catch (SQLException e) { e.printStackTrace(); }
-		finally {
-			JdbcUtil.close(rs);
-			JdbcUtil.close(pstmt);
-			JdbcUtil.close(conn);
 		}
+		catch (SQLException e) { e.printStackTrace(); }
+		finally { JdbcUtil.close(rs); JdbcUtil.close(pstmt); JdbcUtil.close(conn); }
 		return result;
 	}
 	
@@ -92,11 +84,7 @@ public class MemberDao {
 			}
 		}
 		catch (SQLException e) { e.printStackTrace(); }
-		finally {
-			JdbcUtil.close(rs);
-			JdbcUtil.close(pstmt);
-			JdbcUtil.close(conn);
-		}
+		finally { JdbcUtil.close(rs); JdbcUtil.close(pstmt); JdbcUtil.close(conn); }
 		return memberVo;
 	}
 
@@ -117,12 +105,7 @@ public class MemberDao {
 			}
 		}
 		catch (SQLException e) { e.printStackTrace(); }
-		finally {
-			JdbcUtil.close(rs);
-			JdbcUtil.close(pstmt);
-			JdbcUtil.close(conn);
-		}
-		
+		finally { JdbcUtil.close(rs); JdbcUtil.close(pstmt); JdbcUtil.close(conn); }
 		return member;
 	}
 
@@ -151,12 +134,9 @@ public class MemberDao {
 				memberVo.setPhone(rs.getString("phone"));
 				memberList.add(memberVo);
 			}
-		} catch (SQLException e) { e.printStackTrace(); }
-		finally {
-			JdbcUtil.close(rs);
-			JdbcUtil.close(pstmt);
-			JdbcUtil.close(conn);
 		}
+		catch (SQLException e) { e.printStackTrace(); }
+		finally { JdbcUtil.close(rs); JdbcUtil.close(pstmt); JdbcUtil.close(conn); }
 		return memberList;
 	}
 
@@ -172,12 +152,9 @@ public class MemberDao {
 			while(rs.next()) {
 				listCount = rs.getInt(1);
 			}
-		} catch (SQLException e) { e.printStackTrace(); }
-		finally {
-			JdbcUtil.close(rs);
-			JdbcUtil.close(pstmt);
-			JdbcUtil.close(conn);
 		}
+		catch (SQLException e) { e.printStackTrace(); }
+		finally { JdbcUtil.close(rs); JdbcUtil.close(pstmt); JdbcUtil.close(conn); }
 		return listCount;
 	}
 
@@ -188,11 +165,9 @@ public class MemberDao {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, id);
 			pstmt.executeUpdate();
-		} catch (SQLException e) { e.printStackTrace(); }
-		finally {
-			JdbcUtil.close(pstmt);
-			JdbcUtil.close(conn);
 		}
+		catch (SQLException e) { e.printStackTrace(); }
+		finally { JdbcUtil.close(rs); JdbcUtil.close(pstmt); JdbcUtil.close(conn); }
 	}
 
 	public boolean memberUpdate(MemberVo member) {
@@ -213,10 +188,7 @@ public class MemberDao {
 			if(result != 0) { success = true; }
 		}
 		catch (SQLException e) { e.printStackTrace(); }
-		finally {
-			JdbcUtil.close(pstmt);
-			JdbcUtil.close(conn);
-		}
+		finally { JdbcUtil.close(pstmt); JdbcUtil.close(conn); }
 		return success;
 	}
 }

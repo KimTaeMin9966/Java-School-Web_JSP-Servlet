@@ -13,26 +13,38 @@
 		<table>
 			<tr>
 				<td>아이디</td>
-				<td><input type="text" name="id" /></td>
+				<td>
+					<input type="text" name="id" />
+				</td>
 			</tr>
 			<tr>
 				<td>비밀번호</td>
-				<td><input type="text" name="pass" /></td>
+				<td>
+					<input type="text" name="pass" />
+				</td>
 			</tr>
 			<tr>
 				<td>이름</td>
-				<td><input type="text" name="name" /></td>
+				<td>
+					<input type="text" name="name" />
+				</td>
 			</tr>
 			<tr>
 				<td>주소</td>
-				<td><input type="text" name="addr" /></td>
+				<td>
+					<input type="text" name="addr" />
+				</td>
 			</tr>
 			<tr>
 				<td>전화번호</td>
-				<td><input type="text" name="phone" /></td>
+				<td>
+					<input type="text" name="phone" />
+				</td>
 			</tr>
 			<tr>
-				<td colspan=2><input type="submit" value="회원가입" /></td>
+				<td colspan=2>
+					<input type="submit" value="회원가입" />
+				</td>
 			</tr>
 		</table>
 	</form>
