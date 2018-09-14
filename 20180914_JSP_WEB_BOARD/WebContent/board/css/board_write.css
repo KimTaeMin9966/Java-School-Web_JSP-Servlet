@@ -22,8 +22,18 @@ body {
 	box-shadow: 2px 2px 5px gray;
 	overflow: auto;
 }
-#menu-bar:hover {
-	background: red;
-	color: white;
-	cursor: pointer;
+#webBoard-datas {
+	border-collapse: collapse;
+	border: 1px soild #CCC;
+	width: 500px;
+	margin: 50px auto;
+}
+#webBoard-datas th, #webBoard-datas td {
+	border: 1px solid #333;
+	text-align: center;
+	height: 35px;
+}
+#webBoard-datas td:nth-child(2) {
+	text-align: left;
+	padding-left: 10px;
 }

@@ -1,0 +1,68 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<link rel="stylesheet" type="text/css" href="board/css/board_list.css">
+</head>
+<body>
+	<div id="page-wrapper">
+		<jsp:include page="../header.jsp" />
+		<a href="write.bo">게시판 글쓰기</a>
+		<table id="webBoard-datas">
+			<tr>
+				<th>글번호</th>
+				<th>제목</th>
+				<th>작성자</th>
+				<th>날짜</th>
+				<th>조회수</th>
+			</tr>
+			<c:forEach var="board" items="${boardList}">
+				<tr>
+					<td>${board.board_num}</td>
+					<td>
+						<c:if test="${board.board_re_lev != 0}">
+							<c:forEach var="i" begin="1" end="${board.board_re_lev}">&nbsp;&nbsp;&nbsp;</c:forEach>
+							▶
+						</c:if>
+						<a href="boardDetail.bo?board_num=${board.board_num}">${board.board_title}</a>
+					</td>
+					<td>${board.board_name}</td>
+					<td>
+						<c:choose>
+							<c:when test="${today == board.board_day_date}">${board.board_time_date}</c:when>
+							<c:otherwise>${board.board_day_date}</c:otherwise>
+						</c:choose>
+					</td>
+					<td>${board.board_readcount}</td>
+				</tr>
+			</c:forEach>
+		</table>
+		<section id="page-Info">
+			<c:choose>
+				<c:when test="${pageInfo.page <= 1}">[이전] &nbsp;</c:when>
+				<c:otherwise><a href="listShow.bo?page=${pageInfo.page - 1}">[이전]</a></c:otherwise>
+			</c:choose>
+			
+			<c:forEach var ="i" begin="${pageInfo.startPage}" end="${pageInfo.endPage}">
+				<c:choose>
+					<c:when test="${pageInfo.page eq i}">
+						<a href="listShow.bo?page=${i}"><span style="color:RED;">[${i}]</span></a>
+					</c:when>
+					<c:otherwise>
+						<a href="listShow.bo?page=${i}"><span style="color:#CCC;">[${i}]</span></a>
+					</c:otherwise>
+				</c:choose>
+			</c:forEach>
+			
+			<c:choose>
+				<c:when test="${pageInfo.page >= pageInfo.maxPage}">[다음]</c:when>
+				<c:otherwise><a href="listShow.bo?page=${pageInfo.page + 1}">[다음]</a></c:otherwise>
+			</c:choose>
+		</section>
+	</div>
+</body>
+</html>

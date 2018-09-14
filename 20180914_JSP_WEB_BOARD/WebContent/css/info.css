@@ -22,8 +22,18 @@ body {
 	box-shadow: 2px 2px 5px gray;
 	overflow: auto;
 }
-#menu-bar:hover {
-	background: red;
-	color: white;
-	cursor: pointer;
+table {
+	border-collapse: collapse;
+	border: 1px soild #CCC;
+	width: 500px;
+	margin: 50px auto;
+}
+table th, table td {
+	border: 1px solid #333;
+	text-align: center;
+	height: 35px;
+}
+table td:nth-child(2) {
+	text-align: left;
+	padding-left: 10px;
 }

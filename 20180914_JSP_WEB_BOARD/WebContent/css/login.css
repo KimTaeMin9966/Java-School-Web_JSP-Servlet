@@ -22,8 +22,28 @@ body {
 	box-shadow: 2px 2px 5px gray;
 	overflow: auto;
 }
-#menu-bar:hover {
-	background: red;
-	color: white;
-	cursor: pointer;
+#login-from {
+	text-align: center;
 }
+form {
+	display: inline-block;
+	margin: 100px 0;
+	text-align: left;
+}
+#login-from-data {
+	border-collapse: collapse;
+	border: 1px solid black;
+	line-height: 25px;
+}
+#login-from-data tr td {
+	width: 135px;
+}
+#login-from-data tr:last-child {
+	text-align: center;
+}
+
+
+
+
+
+

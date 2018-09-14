@@ -22,8 +22,28 @@ body {
 	box-shadow: 2px 2px 5px gray;
 	overflow: auto;
 }
-#menu-bar:hover {
-	background: red;
-	color: white;
-	cursor: pointer;
+#join-from {
+	text-align: center;
 }
+form {
+	display: inline-block;
+	margin: 100px 0;
+	text-align: left;
+}
+#join-from-data {
+	border-collapse: collapse;
+	border: 1px solid black;
+	line-height: 25px;
+}
+#join-from-data tr td {
+	width: 135px;
+}
+#join-from-data tr:last-child {
+	text-align: center;
+}
+
+
+
+
+
+

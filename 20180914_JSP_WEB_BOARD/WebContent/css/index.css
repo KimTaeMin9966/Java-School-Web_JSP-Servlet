@@ -22,16 +22,28 @@ body {
 	box-shadow: 2px 2px 5px gray;
 	overflow: auto;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
+.webInfo, .myInfo {
+	width: 125px;
+	height: 30px;
+	font-size: 20px;
+	background-color: #333;
+	color: white;
+	float: left;
+	text-align: center;
+}
+.myInfo {
+	margin-right: 10px;
+}
+#menu-bar {
+	width: 97px;
+	height: 30px;
+	font-size: 20px;
+	background-color: #333;
+	color: white;
+	float: left;
+	text-align: center;
+}
+.webInfo:hover, .myInfo:hover {
+	background-color: red;
+	cursor: pointer;
+}

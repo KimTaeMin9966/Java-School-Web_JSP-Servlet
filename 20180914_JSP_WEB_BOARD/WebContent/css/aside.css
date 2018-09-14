@@ -1,28 +1,26 @@
 @charset "UTF-8";
-.webInfo, .myInfo {
-	width: 125px;
-	height: 30px;
-	font-size: 20px;
-	background-color: #333;
+* {
+	padding: 0;
+	margin: 0;
+}
+a {
+	text-decoration: none;
 	color: white;
-	float: left;
-	text-align: center;
+	font-size: 16px;
 }
-.myInfo {
-	margin-right: 10px;
+li { list-style: none; }
+body {
+	width: 1250px;
+	margin: 0 auto;
+	background: #E6E6E6;
 }
-#menu-bar {
-	width: 97px;
-	height: 30px;
-	font-size: 20px;
-	background-color: #333;
-	color: white;
-	float: left;
-	text-align: center;
-}
-.webInfo:hover, .myInfo:hover, #menu-bar:hover {
-	background-color: red;
-	cursor: pointer;
+#page-wrapper {
+	background: white;
+	margin: 15px 0;
+	padding: 10px 10px;
+	border-radius: 10px;
+	box-shadow: 2px 2px 5px gray;
+	overflow: auto;
 }
 #webInfo-data {
 	width: 250px;
@@ -53,3 +51,27 @@
 	background-color: red;
 	cursor: pointer;
 }
+#webInfo-data-add {
+	height: 21px;
+}
+#webInfo-data-add1 {
+	width: 110px;
+	float: left;
+	text-align: center;
+}
+#webInfo-data-add2 {
+	width: 110px;
+	float: right;
+	text-align: center;
+}
+#webInfo-data-add1:hover {
+	background-color: red;
+	cursor: pointer;
+}
+#webInfo-data-add2:hover {
+	background-color: red;
+	cursor: pointer;
+}
+
+
+
