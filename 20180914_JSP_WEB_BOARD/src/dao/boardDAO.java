@@ -59,7 +59,7 @@ public class boardDAO {
 			int endRow = startRow + count;
 			
 			conn = JdbcUtil.getConnection();
-			String sql = "SELECT * FROM (SELECT ROWNUM AS rnum, temp.* FROM "
+			sql = "SELECT * FROM (SELECT ROWNUM AS rnum, temp.* FROM "
 					+ "(SELECT * FROM web_boards ORDER BY board_re_ref DESC, board_re_seq ASC) temp)"
 					+ " WHERE rnum BETWEEN ? and ?";
 			pstmt = conn.prepareStatement(sql);
@@ -93,7 +93,7 @@ public class boardDAO {
 		
 		try {
 			conn = JdbcUtil.getConnection();
-			String sql = "SELECT COUNT(*) FROM web_boards";
+			sql = "SELECT COUNT(*) FROM web_boards";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			
@@ -109,7 +109,7 @@ public class boardDAO {
 		boardVO boardVo = new boardVO();
 		
 		try {
-			String sql = "SELECT * FROM web_boards WHERE board_num = ?";
+			sql = "SELECT * FROM web_boards WHERE board_num = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, board_num);
 			rs = pstmt.executeQuery();
@@ -137,12 +137,92 @@ public class boardDAO {
 		conn = JdbcUtil.getConnection();
 		
 		try {
-			String sql = "UPDATE web_boards SET board_readcount = board_readcount + 1 WHERE board_num = ?";
+			sql = "UPDATE web_boards SET board_readcount = board_readcount + 1 WHERE board_num = ?";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, board_num);
 			pstmt.executeUpdate();
 		}
 		catch (SQLException e) { e.printStackTrace(); }
 		finally { JdbcUtil.close(pstmt); JdbcUtil.close(conn); }
+	}
+	
+	public void boardReplySubmit(boardVO boardVo) {
+		int ref = boardVo.getBoard_re_ref();
+		int lev = boardVo.getBoard_re_lev();
+		int seq = boardVo.getBoard_re_seq();
+		
+		try {
+			conn = JdbcUtil.getConnection();
+			conn.setAutoCommit(false);
+			
+			sql = "UPDATE web_boards SET board_re_seq = board_re_seq + 1 WHERE board_re_ref = ? AND board_re_seq > ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, ref);
+			pstmt.setInt(2, seq);
+			pstmt.executeUpdate();
+			
+			seq = seq + 1;
+			lev = lev + 1;
+			sql = "INSERT INTO web_boards VALUES(web_boards_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, sysdate)";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, boardVo.getBoard_name());
+			pstmt.setString(2, boardVo.getBoard_pass());
+			pstmt.setString(3, boardVo.getBoard_title());
+			pstmt.setString(4, boardVo.getBoard_content());
+			pstmt.setString(5, "");
+			pstmt.setInt(6, ref);
+			pstmt.setInt(7, lev);
+			pstmt.setInt(8, seq);
+			pstmt.setInt(9, 0);
+			pstmt.executeUpdate();
+			JdbcUtil.commit(conn);
+		}
+		catch (SQLException e) { e.printStackTrace(); JdbcUtil.rollback(conn); }
+		finally { JdbcUtil.close(pstmt); JdbcUtil.close(conn); }
+	}
+
+	public void boardUpdateSubmit(boardVO boardVo) {
+		try {
+			conn = JdbcUtil.getConnection();
+			
+			sql = "UPDATE web_boards SET board_name = ?, board_title = ?, board_content = ? "
+					+ "WHERE board_num = ? AND board_pass = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, boardVo.getBoard_name());
+			pstmt.setString(2, boardVo.getBoard_title());
+			pstmt.setString(3, boardVo.getBoard_content());
+			pstmt.setInt(4, boardVo.getBoard_num());
+			pstmt.setString(5, boardVo.getBoard_pass());
+			pstmt.executeUpdate();
+		}
+		catch (SQLException e) { e.printStackTrace(); }
+		finally { JdbcUtil.close(pstmt); JdbcUtil.close(conn); }
+	}
+
+	public boolean boardDeleteSubmit(boardVO boardVo) {
+		boolean success = false;
+		
+		try {
+			conn = JdbcUtil.getConnection();
+			
+			sql = "SELECT board_pass FROM test_board WHERE board_num = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, boardVo.getBoard_num());
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				String board_pass = rs.getString("board_pass");
+				if(boardVo.getBoard_pass().equals(board_pass)) {
+					sql = "DELETE FROM test_board WHERE board_num = ?";
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setInt(1, boardVo.getBoard_num());
+					int sess = pstmt.executeUpdate();
+					if(sess != 0) { success = true; }
+				}
+			}
+		}
+		catch (SQLException e) { e.printStackTrace(); }
+		finally { JdbcUtil.close(rs); JdbcUtil.close(pstmt); JdbcUtil.close(conn); }
+		return success;
 	}
 }

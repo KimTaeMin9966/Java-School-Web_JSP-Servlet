@@ -35,8 +35,6 @@ public class boardController extends HttpServlet {
 		String command = requestUri.substring(contextPath.length());
 		System.out.println(command);
 		
-		boolean success = false;
-		
 		if(command.equals("/main.bo")) {
 			System.out.println("메인페이지 호출");
 			
@@ -56,26 +54,40 @@ public class boardController extends HttpServlet {
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/board/board_list.jsp");
 			rd.forward(request, response);
-		} else if(command.equals("/boardDetail.bo")) { // 작업 진행중
+		} else if(command.equals("/boardDetail.bo")) { // 작업 완료
 			System.out.println("게시글 자세히 보기창 요청");
 			bs.boardDetail(request);
 			
 			RequestDispatcher rd = request.getRequestDispatcher("/board/board_Detail.jsp");
 			rd.forward(request, response);
-		} else if(command.equals("")) { // 작업 진행중
+		} else if(command.equals("/boardReplyForm.bo")) { // 작업 완료
+			System.out.println("답변 작성 창 요청");
+			bs.boardreply(request);
 			
-		} else if(command.equals("")) { // 작업 진행중
+			RequestDispatcher rd = request.getRequestDispatcher("/board/board_Reply.jsp");
+			rd.forward(request, response);
+		} else if(command.equals("/boardReplySubmit.bo")) { // 작업 완료
+			System.out.println("답변 게시물 추가 요청");
+			bs.boardReplySubmit(request, response);
+		} else if(command.equals("/boardUpdateForm.bo")) { // 작업 완료
+			System.out.println("수정창 요청");
+			bs.boardUpdate(request);
 			
-		} else if(command.equals("")) { // 작업 진행중
+			RequestDispatcher rd = request.getRequestDispatcher("/board/board_Update.jsp");
+			rd.forward(request, response);
+		} else if(command.equals("/boardUpdateSubmit.bo")) { // 작업 완료
+			System.out.println("게시물 수정 요청");
+			bs.boardUpdateSubmit(request, response);
+		} else if(command.equals("/boardDeleteForm.bo")) { // 작업 완료
+			System.out.println("삭제창 요청");
+			String board_num = request.getParameter("board_num");
+			request.setAttribute("board_num", board_num);
 			
-		} else if(command.equals("")) { // 작업 진행중
-			
-		} else if(command.equals("")) { // 작업 진행중
-			
-		} else if(command.equals("")) { // 작업 진행중
-			
-		} else if(command.equals("")) { // 작업 진행중
-			
+			RequestDispatcher rd = request.getRequestDispatcher("/board/board_Delete.jsp");
+			rd.forward(request, response);
+		} else if(command.equals("/boardDeleteSubmit.bo")) { // 작업 완료
+			System.out.println("삭제 요청");
+			bs.boardDeleteSubmit(request, response);
 		}
 	}
 }

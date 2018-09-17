@@ -25,19 +25,11 @@
 				<td>${boardVo.board_content}</td>
 			</tr>
 			<tr>
-				<td>첨부파일</td>
-				<td>
-					<c:if test="${!empty boardVo.board_file}">
-						<a href="file_down.bo?board_file=${boardVo.board_file}">${boardVo.board_file}</a>
-					</c:if>
-				</td>
-			</tr>
-			<tr>
 				<td colspan=2>
 					<a href="boardReplyForm.bo?board_num=${boardVo.board_num}">[답변]</a>
 					<a href="boardUpdateForm.bo?board_num=${boardVo.board_num}">[수정]</a>
 					<a href="boardDeleteForm.bo?board_num=${boardVo.board_num}">[삭제]</a>
-					<a href="boardList.bo">[목록]</a>
+					<a href="listShow.bo">[목록]</a>
 				</td>
 			</tr>
 		</table>
